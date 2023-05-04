@@ -1,0 +1,6 @@
+[submodule "notation"]
+	path = notation
+	url = https://github.com/WishofStar/notation.git
+[submodule "styles"]
+	path = styles
+	url = https://github.com/WishofStar/styles.git

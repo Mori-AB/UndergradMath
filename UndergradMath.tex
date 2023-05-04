@@ -1,0 +1,91 @@
+\documentclass[
+    oneside
+    % image
+]{styles/mori-book}% styles/mori-report in real usage
+
+\usepackage[
+    showframe,
+    a4paper,
+    % asymmetric,
+    % hmargin=,
+    % bindingoffset=0.2in
+]{geometry}
+
+\usepackage{notation/mori-math}
+\usepackage{notation/mori-ref}
+
+\input{thmstyles.tex}
+\input{settings.tex}
+\input{notation.tex}
+
+% Lipsum
+% --------------------
+\usepackage{lipsum}
+% --------------------
+
+\doctitle{Book Template}
+\docauthor{Book Author}
+\docdate{\today}
+\docversion{1.0.0}
+% \docimagepath{images/SNU.png}
+
+\begin{document}
+    \makecoverpage
+    \maketitlepage
+
+    \frontmatter
+    \pagestyle{front}
+    \setchapter*{Test Preface} \label{chap:preface}
+
+    \lipsum[2-6]
+
+    \maketocpage
+
+    \mainmatter
+
+    \pagestyle{main}
+
+    \setpart{Test Part 1}
+
+    \lipsum[3]
+
+    \setcounter{chapter}{8}
+    
+    \setchapter{Test Chapter 1} \label{chap:TC1}
+    % Let \denote{$\vec{v}\dotproduct\vec{w}$}[$\dotproduct$] denote the \textdef[inner product]{inner product of $\vec{v}$ and $\vec{w}$}.
+    
+    \section{Test Section 1} \label{sec:9TS1}
+    \lipsum[1-5]
+    
+    \setcounter{section}{9}
+    
+    \section{Test Section 2}
+    % We continue the text of Section \ref{sec:9TS1} from Chapter \nameref{chap:preface}.
+    
+    \lipsum[6-9]
+    
+    \setchapter{Test Chapter 2}
+    \lipsum[1-2]
+    
+    \section{Test Section 1}
+    
+    \setcounter{section}{9}
+    
+    \section{Test Section 2}
+
+    \setcounter{part}{4}
+    \setpart{Test Part 5}
+
+    \appendix
+    \setchapter{Appendix}
+    \section{Appendix}
+
+    \backmatter
+
+    \setchapter{Appendix}
+
+    \lipsum[2-3]
+    % \printindex
+    % \printnomenclature
+    
+\end{document}
