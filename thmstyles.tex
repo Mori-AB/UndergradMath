@@ -1,0 +1,171 @@
+% theorem styles
+\declaretheoremstyle[
+    headfont=\sffamily\bfseries,
+    bodyfont=\normalfont,
+    notefont=\sffamily\mdseries,
+    notebraces={(}{)},
+    headformat={\NAME\space\NUMBER.\space\NOTE},
+    headpunct={}
+    ]{lightthm}
+
+\declaretheorem[
+    style=lightthm,
+    name=Definition,
+    refname={definition,definitions},
+    Refname={Definition,Definitions},
+    within=section
+]{definition}
+\declaretheorem[
+    style=lightthm,
+    name=Definition,
+    refname={definition,definitions},
+    unnumbered
+]{definition*}
+\declaretheorem[
+    style=lightthm,
+    name=Example,
+    refname={example,examples},
+    Refname={Example,Examples},
+    sibling=definition
+]{example}
+\declaretheorem[
+    style=lightthm,
+    name=Exercise,
+    refname={exercise,exercises},
+    Refname={Exercise,Exercises},
+    sibling=definition
+]{exercise}
+\declaretheorem[
+    style=lightthm,
+    name=Notation,
+    refname={notation,notations},
+    Refname={Notation,Notations},
+    sibling=definition
+]{notation}
+\declaretheorem[
+    style=lightthm,
+    name=Caution,
+    refname={caution,cautions},
+    Refname={Caution,Cautions},
+    sibling=definition
+]{caution}
+\declaretheorem[
+    style=lightthm,
+    name=Remark,
+    refname={remark,remarks},
+    Refname={Remark,Remarks},
+    sibling=definition
+]{remark}
+
+\declaretheorem[
+    style=lightthm,
+    name=Redefinition,
+    refname={redefinition,redefinitions},
+    Refname={Redefinition,Redefinitions},
+    sibling=definition
+]{redefinition}
+% \declaretheorem[
+%     style=lightthm,
+%     name=전환점,
+%     refname={전환점},
+%     sibling=definition
+% ]{turnpoint}
+\declaretheorem[
+    style=lightthm,
+    name=Custom,
+    refname={custom,customs},
+    Refname={Custom,Customs},
+    sibling=definition
+]{custom}
+
+\declaretheoremstyle[
+    headfont=\sffamily\bfseries,
+    bodyfont=\sffamily,
+    notefont=\sffamily\bfseries,
+    notebraces={(}{)},
+    headformat={\NAME\space\NUMBER.\space\NOTE},
+    headpunct={}
+    ]{normalthm}
+
+\declaretheorem[
+    style=normalthm,
+    name=Observation,
+    refname={observation,observations},
+    Refname={Observation,Observations},
+    sibling=definition
+]{observation}
+\declaretheorem[
+    style=normalthm,
+    name=Observation,
+    refname={observation,observations},
+    Refname={Observation,Observations},
+    unnumbered
+]{observation*}
+\declaretheorem[
+    style=normalthm,
+    name=Proposition,
+    refname={proposition,propositions},
+    Refname={Proposition,Propositions},
+    sibling=definition
+]{proposition}
+\declaretheorem[
+    style=normalthm,
+    name=Lemma,
+    refname={lemma,lemmas},
+    Refname={Lemma,Lemmas},
+    sibling=definition
+]{lemma}
+\declaretheorem[
+    style=normalthm,
+    name=Theorem,
+    refname={theorem,theorems},
+    Refname={Theorem,Theorems},
+    sibling=definition
+]{theorem}
+\declaretheorem[
+    style=normalthm,
+    name=Corollary,
+    refname={corollary,corollaries},
+    refname={Corollary,Corollaries},
+    sibling=definition
+]{corollary}
+\declaretheorem[
+    style=normalthm,
+    name=Question,
+    refname={question,questions},
+    refname={Question,Questions},
+    sibling=definition
+]{question}
+
+\declaretheoremstyle[
+    headfont=\sffamily\bfseries,
+    bodyfont=\normalfont,
+    qed=\qedsymbol,
+    headpunct={\::}
+    ]{proof}
+    
+\declaretheorem[
+    style=proof,
+    name=Proof,
+    unnumbered
+]{myproof}
+\declaretheorem[
+    style=proof,
+    name=Solution,
+    unnumbered
+]{solution}
+\newcommand\rightqed{{\hfill\qedhere}} % place qed at right side
+
+\declaretheoremstyle[
+    headfont=\sffamily\bfseries,
+    notefont=\sffamily\bfseries,
+    headformat={\NOTE},
+    headpunct={\::},
+    notebraces={\unskip}{},
+    qed=\qedsymbol
+    ]{miscellaneous}
+
+\declaretheorem[
+    style=miscellaneous,
+    unnumbered
+]{misc}
