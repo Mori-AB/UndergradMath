@@ -4,13 +4,14 @@
 ]{styles/mori-book}% styles/mori-report in real usage
 
 \usepackage[
-    showframe,
+    % showframe,
     a4paper,
     headheight=14.40277pt
     % asymmetric,
     % hmargin=,
     % bindingoffset=0.2in
 ]{geometry}
+\usepackage{import}
 
 \usepackage{notation/mori-math}
 \usepackage{notation/mori-ref}
@@ -37,9 +38,7 @@
 
     \frontmatter
     \pagestyle{front}
-    \setchapter*{Test Preface} \label{chap:preface}
-
-    \lipsum[2-6]
+    \import{contents}{Preface.tex}
 
     \maketocpage
 
