@@ -1,11 +1,12 @@
 \documentclass[
-    oneside
+    twoside,
     % image
 ]{styles/mori-book}% styles/mori-report in real usage
 
 \usepackage[
     showframe,
     a4paper,
+    headheight=14.40277pt
     % asymmetric,
     % hmargin=,
     % bindingoffset=0.2in
@@ -23,14 +24,15 @@
 \usepackage{lipsum}
 % --------------------
 
-\doctitle{Book Template}
-\docauthor{Book Author}
+\doctitle{%
+    Study Notes for Undergraduate Math%
+}
+\docauthor{Kim Jae Won}
 \docdate{\today}
 \docversion{1.0.0}
 % \docimagepath{images/SNU.png}
 
 \begin{document}
-    \makecoverpage
     \maketitlepage
 
     \frontmatter
