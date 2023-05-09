@@ -9,3 +9,422 @@ More formally speaking,
 propositional logic is a branch of logic that deals with
 propositions
 and relations between them.
+
+When we say propositions,
+we mean a sentence that is either true or false;
+we do not consider sentences that are
+`somewhat true,'
+`both true and false,'
+or `neither true nor false.'
+In the usual sense,
+this eliminates sentences that require subjective decisions.
+
+Now how do we define what propositions are?
+
+\begin{definition}[Propositional Formula]
+    \label{def:propformula}
+    Propositional logic are described by three components:
+    atomic propositions,
+    connectives,
+    and parentheses.
+
+    A \define{propositional formula} is either
+    an atomic proposition,
+    or propositions (not necessarily atomic) connected by connectives.
+    As opposed to atomic propositions,
+    the latter are also called compound propositions.
+\end{definition}
+
+\begin{remark}
+    Typically, atomic propositions are denoted as \(p,q,r,\ldots\).
+    These are sometimes called propositional symbols.
+    Combined with the notations for connectives,
+    it is possible to view propositions as \emph{formal strings},
+    hence not necessarily requiring set theory
+    as a prerequisite for logic.
+\end{remark}
+
+There are five types of connectives:
+negation,
+conjunction,
+disjunction,
+conditional,
+and biconditional.
+To see the effect of each connectives,
+it is useful to see their \textdef{truth tables}.
+\begin{itemize}
+    \item The \define{negation} of a proposition \(A\),
+    denoted by \(\denote{\neg} A\),
+    is a proposition which always have the other truth value
+    besides one of \(A\).
+    Note that even though negation requires a single proposition,
+    it is still considered a ``connect''ive.
+    \[
+        \begin{array}{c}\toprule
+            A \\ \midrule
+            \top \\
+            \bot \\ \bottomrule
+        \end{array}
+        \;
+        \begin{array}{c}\toprule
+            \neg A \\ \midrule
+            \bot \\
+            \top \\ \bottomrule
+        \end{array}
+    \]
+
+    \item The \define{conjunction} of propositions \(A\) and \(B\),
+    denoted by \(A\denote{\wedge} B\),
+    is a proposition which is true
+    only when \(A\) and \(B\) are both true,
+    and false otherwise.
+    % It is possible to extend this definition for \(n\) propositions,
+    % where \(p_1\wedge p_2\wedge\dots\wedge p_n\) is true
+    % only when \(p_1,\dots,p_n\) are all true,
+    % and false otherwise.
+    \[
+        \begin{array}{c c}\toprule
+            A & B \\ \midrule
+            \top & \top \\
+            \top & \bot \\
+            \bot & \top \\
+            \bot & \bot \\ \bottomrule
+        \end{array}
+        \;
+        \begin{array}{c}\toprule
+            A\wedge B \\ \midrule
+            \top \\
+            \bot \\
+            \bot \\
+            \bot \\ \bottomrule
+        \end{array}
+    \]
+
+    \item The \define{disjunction} of propositions \(A\) and \(B\),
+    denoted by \(A\denote{\vee} B\),
+    is a proposition which is false
+    only when \(A\) and \(B\) are both false,
+    and true otherwise.
+    % It is possible to extend this definition for \(n\) propositions,
+    % where \(p_1\wedge p_2\wedge\dots\wedge p_n\) is true
+    % only when \(p_1,\dots,p_n\) are all true,
+    % and false otherwise.
+    \[
+        \begin{array}{c c}\toprule
+            A & B \\ \midrule
+            \top & \top \\
+            \top & \bot \\
+            \bot & \top \\
+            \bot & \bot \\ \bottomrule
+        \end{array}
+        \;
+        \begin{array}{c}\toprule
+            A\vee B \\ \midrule
+            \top \\
+            \top \\
+            \top \\
+            \bot \\ \bottomrule
+        \end{array}
+    \]
+    It should be noted that
+    the word ``or'' in mathematics is nonexclusive;
+    that is, \phrase{\(A\vee B\) and \(A\)}
+    does not necessarily imply \(\neg B\).
+    This is sometimes not the case in everyday lives.
+    In a crossroad, one would not expect to take both routes
+    ---
+    only one route is allowed.
+
+    \item The \define{conditional} of propositions \(A\) and \(B\)
+    make up the phrase \phrase{if \(A\), then \(B\).}
+    Propositions \(A\) and \(B\) are each called
+    the \define{antecedent} and \define{consequent}.
+    Denoted by \(A\denote{\to}B\),
+    it is the logical equivalent of the proposition
+    \(\neg A\vee B\).
+    As for why one would define the conditional like this,
+    consider a daily-life sentence ``if it rains, then we stay home.''
+    If it does rain,
+    then the sentence is fullfilled only when one stays at home.
+    However, if it does not rain,
+    then it does not really matter whether one stays at home.
+    \[
+        \begin{array}{c c}\toprule
+            A & B \\ \midrule
+            \top & \top \\
+            \top & \bot \\
+            \bot & \top \\
+            \bot & \bot \\ \bottomrule
+        \end{array}
+        \;
+        \begin{array}{c}\toprule
+            A\to B \\ \midrule
+            \top \\
+            \bot \\
+            \top \\
+            \top \\ \bottomrule
+        \end{array}
+    \]
+    One other way to think about this is
+    to think when the above statement is false.
+    If it rains, then it is clearly false if one goes outside.
+    However, if it does not rain,
+    then whatever you do technically there is nothing wrong.
+    Life becomes easier if we consider these cases true.
+
+    \item The \define{biconditional} of propositions \(A\) and \(B\)
+    make up the phrase ``\(A\) if and only if \(B\),''
+    or ``\(A\) iff \(B\)'' in short.
+    Denoted as \(A\denote{\leftrightarrow}B\),
+    it is only true when \(A\) and \(B\) have the same truth value.
+    \[
+        \begin{array}{c c} \toprule
+            A & B \\ \midrule
+            \top & \top \\
+            \top & \bot \\
+            \bot & \top \\
+            \bot & \bot \\ \bottomrule            
+        \end{array}
+        \;
+        \begin{array}{c} \toprule
+            A\leftrightarrow B \\ \midrule
+            \top \\
+            \bot \\
+            \bot \\
+            \top \\ \bottomrule            
+        \end{array}
+    \]
+\end{itemize}
+
+In reality (mostly in proof-writing),
+some more definitions are required.
+
+\begin{definition}[Conditionals]
+    \label{def:conditional}
+    The propositional formula \(A\to B\)
+    is sometimes called an \define{implication} from \(A\) to \(B\).
+    Also, given an implication \(A\to B\),
+    the implication \(B\to A\) is called
+    the \define{converse} of \(A\to B\),
+    and the implication \(\neg B\to\neg A\) is called
+    the \define{contrapositive} of \(A\to B\).
+\end{definition}
+
+In the process of representing the effect of connectives,
+we made use of truth tables.
+Though not a common convention,
+here we make a distinction between
+independent and dependent propositions
+by separating the tables for them.
+The table in the left represents independent propositions,
+and the table in the right represents dependent ones.
+But what exactly does each row in the table mean?
+
+In each row of a truth table,
+a possibility of truth values associated to independent propositions
+are listed.
+One can view this as assigning truth values
+to each independent propositions.
+
+\begin{definition}[Interpretation]
+    \label{def:interpret}    
+    Generally speaking,
+    a \define{propositional variable}
+    is a variable that has
+    truth values \(\top\) and \(\bot\) as inputs.
+    Now given a collection \(\mathcal P\) of proposition variables,
+    an \define{interpretation} of \(\mathcal P\)
+    is a assignment of truth values for each propositional symbol.
+\end{definition}
+
+\begin{example}
+    \begin{enumerate}[label=(\alph*)]
+        \item In the truth table for negation,
+        there is only one propositional variable; namely, \(A\).
+        Naturally there are only two interpretations,
+        hence only two rows in the table.
+
+        \item In the truth table for conjunction,
+        there are two propositional variables; namely, \(A\) and \(B\).
+        Naturally there are only four interpretations,
+        hence four rows in the table.
+
+        \item Given a finite collection of proposition variables
+        \(\{A_1,\dots,A_n\}\),
+        there are \(2^n\) possible interpretations.
+    \end{enumerate}
+\end{example}
+
+Now we have named the left half of the given truth tables;
+it is time for the right half of them.
+
+\begin{definition}[Truth of a Proposition]
+    \label{def:truth}
+    Let \(A\) be a proposition
+    determined by some collection \(\mathcal P\)
+    of propositional variables,
+    and \(I\) be an interpretation of \(\mathcal P\).
+    Then \(A\) is said to be \define{true} under \(I\)
+    if \(A\) is assigned the truth value \(\top\)
+    with interpretation \(I\);
+    if \(A\) is assigned the truth value \(\bot\),
+    then \(A\) is said to be \define{false} under \(I\).
+\end{definition}
+
+As for the order of assigning values, the familiar rules apply;
+those inside parentheses are assigned first,
+then those outside parentheses.
+Also, to avoid using too many parenteses,
+we define that \(\neg\) comes faster than \(\wedge\) or \(\vee\),
+and those two come faster than \(\to\) and \(\leftrightarrow\).
+Note that
+there are no orders between \(\wedge\) and \(\vee\),
+and between \(\to\) and \(\leftrightarrow\).
+
+Given the definition of interpretations,
+a seemingly natural question arises:
+Does there exist propositions that always have the same truth value
+under any interpretations?
+The answer is undoubtedly yes;
+we have seen it in the definition of conditionals.
+More explicitly,
+comparing the truth tables of \(p\to q\) and \(\neg p\vee q\)
+gives the following:
+\[
+    \begin{array}{c c}\toprule
+        p & q \\ \midrule
+        \top & \top \\
+        \top & \bot \\
+        \bot & \top \\
+        \bot & \bot \\ \bottomrule
+    \end{array}
+    \;
+    \begin{array}{c c}\toprule
+        \neg p & \neg p\vee q \\ \midrule
+        \bot & \top \\
+        \bot & \bot \\
+        \top & \top \\
+        \top & \top \\ \bottomrule
+    \end{array}
+    \;
+    \begin{array}{c} \toprule
+        p\to q \\ \midrule
+        \top \\
+        \bot \\
+        \top \\
+        \top \\ \bottomrule
+    \end{array}
+\]
+
+Note that
+the two formulas \(\neg p\vee q\) and \(p\to q\)
+are technically not the same;
+one has a negation symbol, the other has not.
+However, they actually mean the same at every case.
+This somewhat subtle difference is described below.
+
+\begin{definition}[Syntax vs Semantics]
+    \label{def:synsem}
+    Two propositional formulas \(A\) and \(B\)
+    are called the same in the \define{syntactic} sense
+    if \(A\) and \(B\) are the same string,
+    and is denoted by \(A=B\).
+
+    On the other hand,
+    two propositional formulas \(A\) and \(B\)
+    are called the same in the \define{semantic} sense
+    if \(A\) and \(B\) are assigned the same truth value
+    for every possible interpretation \(I\),
+    and is denoted by \(A\equiv B\).
+\end{definition}
+
+The first real usage we will make of semantic equality
+is for \(n\)-ary conjunctions and disjunctions;
+that is, conjunctions and disjunctions for \(n\) variables.
+
+\begin{proposition}[\(n\)-ary Conjunctions and Disjunctions]
+    Let \(\{A_1,\ldots,A_n\}\) be a set of propositional variables.
+    Then the following hold:
+    \begin{itemize}
+        \item For any \(1\le i,j,k\le n\),
+        \((A_i\wedge A_j)\wedge A_k\equiv A_i\wedge(A_j\wedge A_k)\).
+        \item For any \(1\le i,j\le n\),
+        \(A_i\wedge A_j\equiv A_j\wedge A_i\).
+        \item For any \(1\le i,j,k\le n\),
+        \((A_i\vee A_j)\vee A_k\equiv A_i\vee(A_j\vee A_k)\).
+        \item For any \(1\le i,j\le n\),
+        \(A_i\vee A_j\equiv A_j\vee A_i\).
+    \end{itemize}
+    These properties allow the notations of
+    \(A_1\wedge\dots\wedge A_n\) and \(A_1\vee\dots\vee A_n\).
+\end{proposition}
+\begin{myproof}
+    Let \(1\le i,j,k\le n\).
+    Then writing out the truth table of both formulas,
+    we obtain
+    \[
+        \begin{array}{c c c} \toprule
+            A_i & A_j & A_k \\ \midrule
+            \top & \top & \top \\
+            \top & \top & \bot \\
+            \top & \bot & \top \\
+            \top & \bot & \bot \\
+            \bot & \top & \top \\
+            \bot & \top & \bot \\
+            \bot & \bot & \top \\
+            \bot & \bot & \bot \\ \bottomrule
+        \end{array}
+        \;
+        \begin{array}{c c} \toprule
+            A_i\wedge A_j & (A_i\wedge A_j)\wedge A_k \\ \midrule
+            \top & \top \\
+            \top & \bot \\
+            \bot & \bot \\
+            \bot & \bot \\
+            \bot & \bot \\
+            \bot & \bot \\
+            \bot & \bot \\
+            \bot & \bot \\ \bottomrule
+        \end{array}
+        \;
+        \begin{array}{c c} \toprule
+            A_j\wedge A_k & A_i\wedge (A_j\wedge A_k) \\ \midrule
+            \top & \top \\
+            \bot & \bot \\
+            \bot & \bot \\
+            \bot & \bot \\
+            \top & \bot \\
+            \bot & \bot \\
+            \bot & \bot \\
+            \bot & \bot \\ \bottomrule
+        \end{array}
+    \]
+    and
+    \[
+        \begin{array}{c c} \toprule
+            A_i & A_j \\ \midrule
+            \top & \top \\
+            \top & \bot \\
+            \bot & \top \\
+            \bot & \bot \\ \bottomrule
+        \end{array}
+        \;
+        \begin{array}{c}\toprule
+            A_i\wedge A_j \\ \midrule
+            \top \\
+            \bot \\
+            \bot \\
+            \bot \\ \bottomrule
+        \end{array}
+        \;
+        \begin{array}{c}\toprule
+            A_j\wedge A_i \\ \midrule
+            \top \\
+            \bot \\
+            \bot \\
+            \bot \\ \bottomrule
+        \end{array}
+    \]
+    thus the rules for conjunction are proved.
+    Rules for disjunction are similar.
+\end{myproof}
