@@ -328,32 +328,40 @@ This somewhat subtle difference is described below.
     Two propositional formulas \(A\) and \(B\)
     are called the same in the \define{syntactic} sense
     if \(A\) and \(B\) are the same string,
-    and is denoted by \(A=B\).
+    and is denoted by \(A\equiv B\).
 
     On the other hand,
     two propositional formulas \(A\) and \(B\)
     are called the same in the \define{semantic} sense
     if \(A\) and \(B\) are assigned the same truth value
     for every possible interpretation \(I\),
-    and is denoted by \(A\equiv B\).
+    and is denoted by \(A\iff B\).
 \end{definition}
+
+The difference between \(\leftrightarrow\) and \(\iff\)
+is that \(\leftrightarrow\) is a connective,
+while \(\iff\) is a sentence.
+Of course, the distinction is not crucial,
+since if \(A\iff B\) for propositions \(A\) and \(B\),
+then \(A\leftrightarrow B\) is true for all interpretations.
 
 The first real usage we will make of semantic equality
 is for \(n\)-ary conjunctions and disjunctions;
 that is, conjunctions and disjunctions for \(n\) variables.
 
 \begin{proposition}[\(n\)-ary Conjunctions and Disjunctions]
+    \label{prop:nwedgevee}
     Let \(\{A_1,\ldots,A_n\}\) be a set of propositional variables.
     Then the following hold:
     \begin{itemize}
         \item For any \(1\le i,j,k\le n\),
-        \((A_i\wedge A_j)\wedge A_k\equiv A_i\wedge(A_j\wedge A_k)\).
+        \((A_i\wedge A_j)\wedge A_k\iff A_i\wedge(A_j\wedge A_k)\).
         \item For any \(1\le i,j\le n\),
-        \(A_i\wedge A_j\equiv A_j\wedge A_i\).
+        \(A_i\wedge A_j\iff A_j\wedge A_i\).
         \item For any \(1\le i,j,k\le n\),
-        \((A_i\vee A_j)\vee A_k\equiv A_i\vee(A_j\vee A_k)\).
+        \((A_i\vee A_j)\vee A_k\iff A_i\vee(A_j\vee A_k)\).
         \item For any \(1\le i,j\le n\),
-        \(A_i\vee A_j\equiv A_j\vee A_i\).
+        \(A_i\vee A_j\iff A_j\vee A_i\).
     \end{itemize}
     These properties allow the notations of
     \(A_1\wedge\dots\wedge A_n\) and \(A_1\vee\dots\vee A_n\).
