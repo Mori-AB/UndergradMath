@@ -242,7 +242,7 @@ for p in product((True, False), repeat=len(atomwords)):
     for word in formula:
         if word == "(" or word == ")":
             string = string[0:cnt] + " & " + string[cnt:]
-        else: cnt += 8
+        else: cnt += 7
     print(string, "\\\\")
 
 print("\\midrule")
