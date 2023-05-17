@@ -252,7 +252,6 @@ for word in formula:
     if word == "(" or word == ")":
         string = string[0:cnt] + " & " + string[cnt:]
     else: cnt += 4
-print(string)
-print("\\\\")
+print(string + "\\\\")
 print("\\bottomrule")
 print("\\end{array}")
