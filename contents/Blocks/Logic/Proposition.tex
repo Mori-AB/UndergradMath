@@ -448,11 +448,6 @@ This table is written in the following steps:
     starting from lower values of steps.
     The required values should be given from the steps before.
 \end{itemize}
-% Therefore one can notice that
-% every proposition with finite variables
-% can be determined its truth values by checking all the interpretations.%
-% \footnote{It can even be programmed to do so;
-% see \url{https://proofmood.mindconnect.cc/en/TruthTable/tr_table.php}.}
 
 With the improved method, we now verify \cref{exm:taut}.
 \begin{myproof}
@@ -1054,7 +1049,61 @@ With the improved method, we now verify \cref{exm:taut}.
                 & \mathbf 4 &  & 1 & 2 & 1  & \\
                 \bottomrule
             \end{array}
-            \qedhere
         \]
     \end{nlist}
 \end{myproof}
+
+From the proofs above,
+one can guess that
+every proposition with finite variables
+can be determined its truth values by checking all the interpretations.%
+\footnote{It can even be programmed to do so;
+see \url{https://proofmood.mindconnect.cc/en/TruthTable/tr_table.php}.}
+
+\cref{def:truth} also gives rise to a more general definition.
+
+\begin{definition}[Models]
+    \label{def:model}
+    Given a collection \(\mathcal A=\{A_1,\dots,A_n\}\) of propositions,
+    if each \(A_i\) are true under an interpretation \(I\),
+    then we say that
+    \(I\) \textdef{satisfies} the collection \(\mathcal A\).
+
+    Now if an interpretation \(I\) satisfies a proposition \(A\),
+    then \(I\) is called a \define{model} of \(A\),
+    and is denoted by \(I\denote{\models} A\)
+    (read as ``\(I\) models \(A\)'').
+    Similarly, for a collection \(\mathcal A\) of propositions,
+    we define \(I\models\mathcal A\)
+    if \(I\) models each proposition in \(\mathcal A\).
+
+    If a proposition (or a collection of propositions)
+    has an interpretation which satisfies it,
+    then it is said to be \define{consistent}.
+    If not, then it is said to be \define{inconsistent}
+    or a \define{contradiction}.
+\end{definition}
+
+Why are models important?
+One possible guess is that
+under these models
+our world of propositions become richer in information.
+However,
+for an arbitrarily chosen proposition,
+there might not exist any models of it;
+hence we should always check its existence.
+The following example demonstrates a simple instance of this.
+
+\begin{example}
+    \label{exm:satisfy}
+    Given a consistent proposition (but not a tautology) \(A\),
+    consider the collection \(\Phi=\{A,\neg A\}\).
+    Then it is clear that \(\neg A\) is also consistent.
+    However, there is no interpretation which satisfies \(\Phi\).
+\end{example}
+
+Thus a collection of consistent propositions
+need not be consistent by itself.
+In contrast, it is clear that
+a collection of inconsistent propositions
+is always inconsistent.
