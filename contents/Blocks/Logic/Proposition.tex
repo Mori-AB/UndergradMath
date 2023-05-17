@@ -175,7 +175,7 @@ it is useful to see their \textdef{truth tables}.
     \item The \define{biconditional} of propositions \(A\) and \(B\)
     make up the phrase ``\(A\) if and only if \(B\),''
     or ``\(A\) iff \(B\)'' in short.
-    Denoted as \(A\denote{\leftrightarrow}B\),
+    Denoted as \(A\denote{\iff}B\),
     it is only true when \(A\) and \(B\) have the same truth value.
     \[
         \begin{array}{c c} \toprule
@@ -187,7 +187,7 @@ it is useful to see their \textdef{truth tables}.
         \end{array}
         \;
         \begin{array}{c} \toprule
-            A\leftrightarrow B \\ \midrule
+            A\iff B \\ \midrule
             \top \\
             \bot \\
             \bot \\
@@ -269,17 +269,21 @@ it is time for the right half of them.
     with interpretation \(I\);
     if \(A\) is assigned the truth value \(\bot\),
     then \(A\) is said to be \define{false} under \(I\).
+
+    A proposition that is true under all interpretations
+    is called a \define{tautology}.
 \end{definition}
 
 As for the order of assigning values, the familiar rules apply;
 those inside parentheses are assigned first,
 then those outside parentheses.
-Also, to avoid using too many parenteses,
-we define that \(\neg\) comes faster than \(\wedge\) or \(\vee\),
-and those two come faster than \(\to\) and \(\leftrightarrow\).
+Also, to avoid using too many parentheses,
+we make the conventions that
+\(\neg\) comes faster than \(\wedge\) or \(\vee\),
+and those two come faster than \(\to\) and \(\iff\).
 Note that
 there are no orders between \(\wedge\) and \(\vee\),
-and between \(\to\) and \(\leftrightarrow\).
+and between \(\to\) and \(\iff\).
 
 Given the definition of interpretations,
 a seemingly natural question arises:
@@ -335,104 +339,410 @@ This somewhat subtle difference is described below.
     are called the same in the \define{semantic} sense
     if \(A\) and \(B\) are assigned the same truth value
     for every possible interpretation \(I\),
-    and is denoted by \(A\iff B\).
+    and is denoted by \(A\Iff B\).
 \end{definition}
 
-The difference between \(\leftrightarrow\) and \(\iff\)
-is that \(\leftrightarrow\) is a connective,
-while \(\iff\) is a sentence.
+The difference between \(\iff\) and \(\Iff\)
+is that \(\iff\) is a connective,
+while \(\Iff\) is a sentence.
 Of course, the distinction is not crucial,
-since if \(A\iff B\) for propositions \(A\) and \(B\),
-then \(A\leftrightarrow B\) is true for all interpretations.
+since if \(A\Iff B\) for propositions \(A\) and \(B\),
+then \(A\iff B\) is a tautology.
 
-The first real usage we will make of semantic equality
-is for \(n\)-ary conjunctions and disjunctions;
-that is, conjunctions and disjunctions for \(n\) variables.
+Further examples of tautologies are as follows.
 
-\begin{proposition}[\(n\)-ary Conjunctions and Disjunctions]
-    \label{prop:nwedgevee}
-    Let \(\{A_1,\ldots,A_n\}\) be a set of propositional variables.
-    Then the following hold:
-    \begin{itemize}
-        \item For any \(1\le i,j,k\le n\),
-        \((A_i\wedge A_j)\wedge A_k\iff A_i\wedge(A_j\wedge A_k)\).
-        \item For any \(1\le i,j\le n\),
-        \(A_i\wedge A_j\iff A_j\wedge A_i\).
-        \item For any \(1\le i,j,k\le n\),
-        \((A_i\vee A_j)\vee A_k\iff A_i\vee(A_j\vee A_k)\).
-        \item For any \(1\le i,j\le n\),
-        \(A_i\vee A_j\iff A_j\vee A_i\).
-    \end{itemize}
-    These properties allow the notations of
-    \(A_1\wedge\dots\wedge A_n\) and \(A_1\vee\dots\vee A_n\).
-\end{proposition}
+\begin{example}
+    \label{exm:taut}
+    Given propositions \(A,B,C\), the following are tautologies.
+    \begin{nlist}
+        \item \(A\wedge A\iff A\),
+        \(A\vee A\iff A\)
+        \hfill (Idempotency)
+
+        \item \(A\wedge B\iff B\wedge A\),
+        \(A\vee B\iff B\vee A\)
+        \hfill (Commutativity)
+
+        \item \((A\wedge B)\wedge C\iff A\wedge (B\wedge C)\),
+        \((A\vee B)\vee C\iff A\vee(B\vee C)\)
+        \hfill (Associativity)
+
+        \item \(A\wedge B\to A\),
+        \(A\to A\vee B\)
+
+        \item \((A\wedge B)\vee A\iff A\),
+        \((A\vee B)\wedge A\iff A\)
+        \hfill (Absorption)
+
+        \item \(\neg\neg A\iff A\)
+        \hfill (Double negation)
+
+        \item \(\neg(A\wedge B)\iff\neg A\vee\neg B\),
+        \(\neg(A\vee B)\iff\neg A\wedge\neg B\)
+        \hfill (De Morgan laws)
+
+        \item \(A\wedge(B\vee C)\iff(A\wedge B)\vee(A\wedge C)\),
+        \(A\vee(B\wedge C)\iff(A\vee B)\wedge(A\vee C)\)
+        \hfill (Distributivity)
+        
+        \item \((A\to B)\iff(\neg B\to\neg A)\)
+        \hfill (Contrapositive)
+
+        \item \((A\to B)\wedge(B\to C)\to(A\to C)\)
+        \hfill (Transitivity)
+    \end{nlist}
+\end{example}
+
+Note that for calculating truth values of propositions,
+there exists a certain `hierarchy' made by parentheses.
+In the above, the hierarchy is treated mentally,
+but for more complex propositions, a modification is useful.
+
+Consider the following truth table:
+\[
+    \begin{array}{c c c} \toprule
+        A & B & C \\ \midrule
+        \top & \top & \top \\
+        \top & \top & \bot \\
+        \top & \bot & \top \\
+        \top & \bot & \bot \\
+        \bot & \top & \top \\
+        \bot & \top & \bot \\
+        \bot & \bot & \top \\
+        \bot & \bot & \bot \\ \midrule
+        \multicolumn{3}{c}{\text{Hierarchy}} \\ \bottomrule
+    \end{array}
+    \;
+    \begin{array}{c c c c c c c} \toprule
+        ( & A & \wedge & B & ) & \wedge & C \\ \midrule
+         & \top & \top & \top & & \top & \top \\
+         & \top & \top & \top & & \bot & \bot \\
+         & \top & \bot & \bot & & \bot & \top \\
+         & \top & \bot & \bot & & \bot & \bot \\
+         & \bot & \bot & \top & & \bot & \top \\
+         & \bot & \bot & \top & & \bot & \bot \\
+         & \bot & \bot & \bot & & \bot & \top \\
+         & \bot & \bot & \bot & & \bot & \bot \\ \midrule
+         & 1 & 2 & 1 &  & \mathbf 3 & 1 \\ \bottomrule
+    \end{array}
+\]
+This table is written in the following steps:
+\begin{itemize}
+    \item In the left table,
+    write down all possible interpretations.
+    
+    \item In the bottom row of the right table,
+    write down the hierachy steps of each proposition.
+    If the proposition of the cell is atomic, then it becomes 1.
+    If the proposition is compound,
+    find the main connective
+    and the step is 1 larger than the maximum step among its parts.
+    It is visually helpful
+    to determine the truth value of the entire formula
+    by writing the largest number in bold.
+    
+    \item If the hierarchy step is 1,
+    then we simply copy the values from the left table.
+    
+    \item Fill in the truth values of compound connectives
+    starting from lower values of steps.
+    The required values should be given from the steps before.
+\end{itemize}
+% Therefore one can notice that
+% every proposition with finite variables
+% can be determined its truth values by checking all the interpretations.%
+% \footnote{It can even be programmed to do so;
+% see \url{https://proofmood.mindconnect.cc/en/TruthTable/tr_table.php}.}
+
+With the improved method, we now verify \cref{exm:taut}.
 \begin{myproof}
-    Let \(1\le i,j,k\le n\).
-    Then writing out the truth table of both formulas,
-    we obtain
-    \[
-        \begin{array}{c c c} \toprule
-            A_i & A_j & A_k \\ \midrule
-            \top & \top & \top \\
-            \top & \top & \bot \\
-            \top & \bot & \top \\
-            \top & \bot & \bot \\
-            \bot & \top & \top \\
-            \bot & \top & \bot \\
-            \bot & \bot & \top \\
-            \bot & \bot & \bot \\ \bottomrule
-        \end{array}
-        \;
-        \begin{array}{c c} \toprule
-            A_i\wedge A_j & (A_i\wedge A_j)\wedge A_k \\ \midrule
-            \top & \top \\
-            \top & \bot \\
-            \bot & \bot \\
-            \bot & \bot \\
-            \bot & \bot \\
-            \bot & \bot \\
-            \bot & \bot \\
-            \bot & \bot \\ \bottomrule
-        \end{array}
-        \;
-        \begin{array}{c c} \toprule
-            A_j\wedge A_k & A_i\wedge (A_j\wedge A_k) \\ \midrule
-            \top & \top \\
-            \bot & \bot \\
-            \bot & \bot \\
-            \bot & \bot \\
-            \top & \bot \\
-            \bot & \bot \\
-            \bot & \bot \\
-            \bot & \bot \\ \bottomrule
-        \end{array}
-    \]
-    and
-    \[
-        \begin{array}{c c} \toprule
-            A_i & A_j \\ \midrule
-            \top & \top \\
-            \top & \bot \\
-            \bot & \top \\
-            \bot & \bot \\ \bottomrule
-        \end{array}
-        \;
-        \begin{array}{c}\toprule
-            A_i\wedge A_j \\ \midrule
-            \top \\
-            \bot \\
-            \bot \\
-            \bot \\ \bottomrule
-        \end{array}
-        \;
-        \begin{array}{c}\toprule
-            A_j\wedge A_i \\ \midrule
-            \top \\
-            \bot \\
-            \bot \\
-            \bot \\ \bottomrule
-        \end{array}
-    \]
-    thus the rules for conjunction are proved.
-    Rules for disjunction are similar.
+    \begin{nlist}
+        \item For a proposition \(A\),
+        the truth tables are computed as below.
+        \[
+            \begin{array}{c}
+                \toprule
+                A \\
+                \midrule
+                \top \\
+                \bot \\
+                \midrule
+                \multicolumn{1}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c}
+                \toprule
+                A & \wedge & A & \iff & A \\
+                \midrule
+                \top & \top & \top & \top & \top \\
+                \bot & \bot & \bot & \top & \bot \\ 
+                \midrule
+                1 & 2 & 1 & \mathbf 3 & 1 \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c}
+                \toprule
+                A & \vee & A & \iff & A \\
+                \midrule
+                \top & \top & \top & \top & \top \\
+                \bot & \bot & \bot & \top & \bot \\ 
+                \midrule
+                1 & 2 & 1 & \mathbf 3 & 1 \\
+                \bottomrule
+            \end{array}
+        \]
+
+        \item For propositions \(A\) and \(B\),
+        the truth tables are computed as below.
+        \[
+            \begin{array}{c c}
+                \toprule
+                A & B \\
+                \midrule
+                \top & \top \\
+                \top & \bot \\
+                \bot & \top \\
+                \bot & \bot \\
+                \midrule
+                \multicolumn{2}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c c c}
+                \toprule
+                A & \wedge & B & \iff & B & \wedge & A \\
+                \midrule
+                \top & \top & \top & \top & \top & \top & \top \\ 
+                \top & \bot & \bot & \top & \bot & \bot & \top \\ 
+                \bot & \bot & \top & \top & \top & \bot & \bot \\ 
+                \bot & \bot & \bot & \top & \bot & \bot & \bot \\ 
+                \midrule
+                1 & 2 & 1 & \mathbf 3 & 1 & 2 & 1 \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c c c}
+                \toprule
+                A & \vee & B & \iff & B & \vee & A \\
+                \midrule
+                \top & \top & \top & \top & \top & \top & \top \\ 
+                \top & \top & \bot & \top & \bot & \top & \top \\ 
+                \bot & \top & \top & \top & \top & \top & \bot \\ 
+                \bot & \bot & \bot & \top & \bot & \bot & \bot \\ 
+                \midrule
+                1 & 2 & 1 & \mathbf 3 & 1 & 2 & 1 \\
+                \bottomrule
+            \end{array}
+        \]
+
+        \item For propositions \(A\), \(B\) and \(C\),
+        the truth tables are computed as below.
+        \begin{gather*}
+            \begin{array}{c c c}
+                \toprule
+                A & B & C \\
+                \midrule
+                \top & \top & \top \\
+                \top & \top & \bot \\
+                \top & \bot & \top \\
+                \top & \bot & \bot \\
+                \bot & \top & \top \\
+                \bot & \top & \bot \\
+                \bot & \bot & \top \\
+                \bot & \bot & \bot \\
+                \midrule
+                \multicolumn{3}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c c c c c c c c c c c}
+                \toprule
+                ( & A & \wedge & B & ) & \wedge & C
+                & \iff
+                & A & \wedge & ( & B & \wedge & C & ) \\
+                \midrule
+                 & \top & \top & \top & & \top & \top
+                & \top
+                & \top & \top & & \top & \top & \top & \\
+                & \top & \top & \top & & \bot & \bot
+                & \top
+                & \top & \bot & & \top & \bot & \bot & \\
+                & \top & \bot & \bot & & \bot & \top
+                & \top
+                & \top & \bot & & \bot & \bot & \top & \\
+                & \top & \bot & \bot & & \bot & \bot
+                & \top
+                & \top & \bot & & \bot & \bot & \bot & \\
+                & \bot & \bot & \top & & \bot & \top
+                & \top
+                & \bot & \bot & & \top & \top & \top & \\
+                & \bot & \bot & \top & & \bot & \bot
+                & \top
+                & \bot & \bot & & \top & \bot & \bot & \\
+                & \bot & \bot & \bot & & \bot & \top
+                & \top
+                & \bot & \bot & & \bot & \bot & \top & \\
+                & \bot & \bot & \bot & & \bot & \bot
+                & \top
+                & \bot & \bot & & \bot & \bot & \bot & \\
+                \midrule
+                 & 1 & 2 & 1 &  & 3 & 1
+                & \mathbf 4
+                & 1 & 3 & & 1 & 2 & 1 \\ \bottomrule
+            \end{array} \\
+            \begin{array}{c c c}
+                \toprule
+                A & B & C \\
+                \midrule
+                \top & \top & \top \\
+                \top & \top & \bot \\
+                \top & \bot & \top \\
+                \top & \bot & \bot \\
+                \bot & \top & \top \\
+                \bot & \top & \bot \\
+                \bot & \bot & \top \\
+                \bot & \bot & \bot \\
+                \midrule
+                \multicolumn{3}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c c c c c c c c c c c}
+                \toprule
+                ( & A & \vee & B & ) & \vee & C
+                & \iff
+                & A & \vee & ( & B & \vee & C & ) \\
+                \midrule
+                 & \top & \top & \top & & \top & \top
+                & \top
+                & \top & \top & & \top & \top & \top & \\
+                & \top & \top & \top & & \top & \bot
+                & \top
+                & \top & \top & & \top & \top & \bot & \\
+                & \top & \top & \bot & & \top & \top
+                & \top
+                & \top & \top & & \bot & \top & \top & \\
+                & \top & \top & \bot & & \top & \bot
+                & \top
+                & \top & \top & & \bot & \bot & \bot & \\
+                & \bot & \top & \top & & \top & \top
+                & \top
+                & \bot & \top & & \top & \top & \top & \\
+                & \bot & \top & \top & & \top & \bot
+                & \top
+                & \bot & \top & & \top & \top & \bot & \\
+                & \bot & \bot & \bot & & \top & \top
+                & \top
+                & \bot & \top & & \bot & \top & \top & \\
+                & \bot & \bot & \bot & & \bot & \bot
+                & \top
+                & \bot & \bot & & \bot & \bot & \bot & \\
+                \midrule
+                 & 1 & 2 & 1 &  & 3 & 1
+                & \mathbf 4
+                & 1 & 3 & & 1 & 2 & 1 \\ \bottomrule
+            \end{array}
+        \end{gather*}
+
+        \item For propositions \(A\) and \(B\),
+        the truth tables are computed as below.
+        \[
+            \begin{array}{c c}
+                \toprule
+                A & B \\
+                \midrule
+                \top & \top \\
+                \top & \bot \\ 
+                \bot & \top \\
+                \bot & \bot \\
+                \midrule
+                \multicolumn{2}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c}
+                \toprule
+                A & \wedge & B & \to & A \\
+                \midrule
+                \top & \top & \top & \top & \top \\
+                \top & \bot & \bot & \top & \top \\
+                \bot & \bot & \top & \top & \bot \\
+                \bot & \bot & \bot & \top & \bot \\
+                \midrule
+                1 & 2 & 1 & \mathbf 3 & 1 \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c}
+                \toprule
+                A & \to & A & \vee & B \\
+                \midrule
+                \top & \top & \top & \top & \top \\
+                \top & \top & \top & \top & \bot \\
+                \bot & \top & \bot & \top & \top \\
+                \bot & \top & \bot & \bot & \bot \\
+                \midrule
+                1 & \mathbf 3 & 1 & 2 & 1 \\
+                \bottomrule
+            \end{array}
+        \]
+
+        \item For propositions \(A\) and \(B\),
+        the truth tables are computed as follows.
+        \[
+            \begin{array}{c c c c}
+                \toprule
+                A B A A \\
+                \midrule
+                \top & \top & \top & \top \\
+                \top & \top & \top & \bot \\
+                \top & \top & \bot & \top \\
+                \top & \top & \bot & \bot \\
+                \top & \bot & \top & \top \\
+                \top & \bot & \top & \bot \\
+                \top & \bot & \bot & \top \\
+                \top & \bot & \bot & \bot \\
+                \bot & \top & \top & \top \\
+                \bot & \top & \top & \bot \\
+                \bot & \top & \bot & \top \\
+                \bot & \top & \bot & \bot \\
+                \bot & \bot & \top & \top \\
+                \bot & \bot & \top & \bot \\
+                \bot & \bot & \bot & \top \\
+                \bot & \bot & \bot & \bot \\
+                \midrule
+                1 & 2 & 1 & 3 & 1 & 4 & 1
+                \\
+                \bottomrule
+                \end{array}
+                \;
+                \begin{array}{c c c c c c c c c}
+                \toprule
+                ( & Aand & B & ) & or & Aiff & A \\
+                \midrule
+                 & \top & \top & \top & \top & \top &  & \top & \top \\
+                 & \top & \top & \top & \top & \top &  & \bot & \bot \\
+                 & \top & \top & \top & \top & \bot &  & \top & \top \\
+                 & \top & \top & \top & \top & \bot &  & \bot & \bot \\
+                 & \top & \bot & \bot & \top & \top &  & \top & \top \\
+                 & \top & \bot & \bot & \top & \top &  & \bot & \bot \\
+                 & \top & \bot & \bot & \bot & \bot &  & \bot & \top \\
+                 & \top & \bot & \bot & \bot & \bot &  & \top & \bot \\
+                 & \bot & \bot & \top & \top & \top &  & \top & \top \\
+                 & \bot & \bot & \top & \top & \top &  & \bot & \bot \\
+                 & \bot & \bot & \top & \bot & \bot &  & \bot & \top \\
+                 & \bot & \bot & \top & \bot & \bot &  & \top & \bot \\
+                 & \bot & \bot & \bot & \top & \top &  & \top & \top \\
+                 & \bot & \bot & \bot & \top & \top &  & \bot & \bot \\
+                 & \bot & \bot & \bot & \bot & \bot &  & \bot & \top \\
+                 & \bot & \bot & \bot & \bot & \bot &  & \top & \bot \\
+                \midrule
+                1 & 2 & 1 & 3 & 1 & 4 & 1
+                \\
+                \bottomrule
+                \end{array}
+        \]
+    \end{nlist}
 \end{myproof}
