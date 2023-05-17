@@ -690,59 +690,51 @@ With the improved method, we now verify \cref{exm:taut}.
         \]
 
         \item For propositions \(A\) and \(B\),
-        the truth tables are computed as follows.
+        the truth tables are computed as below.
         \[
-            \begin{array}{c c c c}
+            \begin{array}{c c}
                 \toprule
-                A B A A \\
+                A & B \\
                 \midrule
-                \top & \top & \top & \top \\
-                \top & \top & \top & \bot \\
-                \top & \top & \bot & \top \\
-                \top & \top & \bot & \bot \\
-                \top & \bot & \top & \top \\
-                \top & \bot & \top & \bot \\
-                \top & \bot & \bot & \top \\
-                \top & \bot & \bot & \bot \\
-                \bot & \top & \top & \top \\
-                \bot & \top & \top & \bot \\
-                \bot & \top & \bot & \top \\
-                \bot & \top & \bot & \bot \\
-                \bot & \bot & \top & \top \\
-                \bot & \bot & \top & \bot \\
-                \bot & \bot & \bot & \top \\
-                \bot & \bot & \bot & \bot \\
+                \top & \top \\
+                \top & \bot \\
+                \bot & \top \\
+                \bot & \bot \\
                 \midrule
-                1 & 2 & 1 & 3 & 1 & 4 & 1
+                \multicolumn{2}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c c c c c}
+                \toprule
+                ( & A & \wedge & B & ) & \vee & A & \iff & A \\
+                \midrule
+                 & \top & \top & \top &  & \top & \top & \top & \top \\
+                 & \top & \bot & \bot &  & \top & \top & \top & \top \\
+                 & \bot & \bot & \top &  & \bot & \bot & \top & \bot \\
+                 & \bot & \bot & \bot &  & \bot & \bot & \top & \bot \\
+                \midrule
+                 & 1 & 2 & 1 &  & 3 & 1 & 4 & 1
                 \\
                 \bottomrule
-                \end{array}
-                \;
-                \begin{array}{c c c c c c c c c}
+            \end{array}
+            \;
+            \begin{array}{c c c c c c c c c}
                 \toprule
-                ( & Aand & B & ) & or & Aiff & A \\
+                ( & A & \vee & B & ) & \wedge & A & \iff & A \\
                 \midrule
-                 & \top & \top & \top & \top & \top &  & \top & \top \\
-                 & \top & \top & \top & \top & \top &  & \bot & \bot \\
-                 & \top & \top & \top & \top & \bot &  & \top & \top \\
-                 & \top & \top & \top & \top & \bot &  & \bot & \bot \\
-                 & \top & \bot & \bot & \top & \top &  & \top & \top \\
-                 & \top & \bot & \bot & \top & \top &  & \bot & \bot \\
-                 & \top & \bot & \bot & \bot & \bot &  & \bot & \top \\
-                 & \top & \bot & \bot & \bot & \bot &  & \top & \bot \\
-                 & \bot & \bot & \top & \top & \top &  & \top & \top \\
-                 & \bot & \bot & \top & \top & \top &  & \bot & \bot \\
-                 & \bot & \bot & \top & \bot & \bot &  & \bot & \top \\
-                 & \bot & \bot & \top & \bot & \bot &  & \top & \bot \\
-                 & \bot & \bot & \bot & \top & \top &  & \top & \top \\
-                 & \bot & \bot & \bot & \top & \top &  & \bot & \bot \\
-                 & \bot & \bot & \bot & \bot & \bot &  & \bot & \top \\
-                 & \bot & \bot & \bot & \bot & \bot &  & \top & \bot \\
+                 & \top & \top & \top &  & \top & \top & \top & \top \\
+                 & \top & \top & \bot &  & \top & \top & \top & \top \\
+                 & \bot & \top & \top &  & \bot & \bot & \top & \bot \\
+                 & \bot & \bot & \bot &  & \bot & \bot & \top & \bot \\
                 \midrule
-                1 & 2 & 1 & 3 & 1 & 4 & 1
+                 & 1 & 2 & 1 &  & 3 & 1 & 4 & 1
                 \\
                 \bottomrule
-                \end{array}
+            \end{array}
         \]
+
+        \item For a proposition \(A\),
+        the truth table is computed as below.
     \end{nlist}
 \end{myproof}

@@ -74,13 +74,14 @@ class Atomic(Proposition):
         return self.value
 
 # get propositional formula
-inputformula = input("Input string:")
+inputformula = input("Input string : ")
 formula = inputformula.split()
 n = len(formula)
     
 # list of characters
 prechars = ["not", "and", "or", "implies", "iff", "(", ")"]
 operators = prechars[0:5]
+symbols = ["\\neg", "\\wedge", "\\vee", "\\to", "\\iff"]
 
 # generate postfix list
 def precedence(op):
@@ -150,6 +151,8 @@ for word in postfix:
         node = Atomic(word)
         s.push(node)
         atoms.append(node)
+        if word not in atomwords:
+            atomwords.append(word)
     elif word in operators:
         node = Proposition(word)
         if word == "not":
@@ -175,38 +178,39 @@ print("Root :", root.word)
 from itertools import product
 print("\\begin{array}{", end = "")
 string = ""
-for i in range(0,len(atoms)):
+for i in range(0,len(atomwords)):
     string = string + "c "
 print(string[:-1] + "}")
 print("\\toprule")
 
 # print formula
 string = ""
-for atom in atoms:
-    string = string + atom.word + " "
-print(string + "\\\\")
+for word in atomwords:
+    string = string + word + " & "
+print(string[:-2] + "\\\\")
 
 print("\\midrule")
 
 # print truth values
-for p in product((True, False), repeat=len(atoms)):
+for p in product((True, False), repeat=len(atomwords)):
     string = ""
-    for i in range(len(atoms)):
-        atoms[i].setValue(p[i])
-    for atom in atoms:
-        if atom.value == True: string = string + "\\top & "
+    for i in range(len(atomwords)):
+        if p[i] == True: string = string + "\\top & "
         else: string = string + "\\bot & "
     print(string[:-2] + "\\\\")
 print("\\midrule")
-string = root.getAllLevel()[:-2]
-print(string)
-print("\\\\")
+print("\\multicolumn{" + str(len(atomwords)) + "}{c}{\\text{Hierarchy}} \\\\")
 print("\\bottomrule")
 print("\\end{array}")
 
 print("\\;")
 
 # print LaTeX code for formula
+def getIndex(target, list):
+    for idx, word in enumerate(list):
+        if target == word:
+            return idx
+
 print("\\begin{array}{", end = "")
 for i in range(0,n):
     if i == 0:
@@ -217,32 +221,37 @@ print("}")
 print("\\toprule")
 
 # print formula
-for word in formula:
-    if formula[n-1] == word:
-        print(word, end="")
-    else:
-        print(word, end= " & ")
-print(" \\\\")
-
+string = ""
+for idx, word in enumerate(formula):
+    if word in operators:
+        string = string + symbols[getIndex(word,operators)]
+    else: string = string + word
+    if idx + 1 < len(formula):
+        string = string + " & "
+print(string + " \\\\")
 print("\\midrule")
 
 # print truth values
 
-for p in product((True, False), repeat=len(atoms)):
-    for i in range(len(atoms)):
-        atoms[i].setValue(p[i])
+for p in product((True, False), repeat=len(atomwords)):
+    for atom in atoms:
+        atom.setValue(p[getIndex(atom.word, atomwords)])
     root.updateValue()
     string = root.getAllValue()[:-3]
     cnt = 0
     for word in formula:
         if word == "(" or word == ")":
             string = string[0:cnt] + " & " + string[cnt:]
-            cnt += 3
-        cnt += 8
+        else: cnt += 8
     print(string, "\\\\")
 
 print("\\midrule")
 string = root.getAllLevel()[:-2]
+cnt = 0
+for word in formula:
+    if word == "(" or word == ")":
+        string = string[0:cnt] + " & " + string[cnt:]
+    else: cnt += 4
 print(string)
 print("\\\\")
 print("\\bottomrule")
