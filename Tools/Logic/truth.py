@@ -52,8 +52,6 @@ class Proposition:
         string = ""
         if self.left:
             string = string + self.left.getAllLevel()
-        if self.parent == None:
-            string = string + "\\mathbf "
         string = string + str(self.level) + " & "
         if self.right:
             string = string + self.right.getAllLevel()
@@ -244,6 +242,7 @@ for p in product((True, False), repeat=len(atomwords)):
     for word in formula:
         if word == "(" or word == ")":
             string = string[0:cnt] + " & " + string[cnt:]
+            cnt += 3
         else: cnt += 7
     print(string, "\\\\")
 
@@ -253,6 +252,7 @@ cnt = 0
 for word in formula:
     if word == "(" or word == ")":
         string = string[0:cnt] + " & " + string[cnt:]
+        cnt += 3
     else: cnt += 4
 print(string + "\\\\")
 print("\\bottomrule")
