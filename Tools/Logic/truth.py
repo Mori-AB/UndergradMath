@@ -52,6 +52,8 @@ class Proposition:
         string = ""
         if self.left:
             string = string + self.left.getAllLevel()
+        if self.parent == None:
+            string = string + "\\mathbf "
         string = string + str(self.level) + " & "
         if self.right:
             string = string + self.right.getAllLevel()
