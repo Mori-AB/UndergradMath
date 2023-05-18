@@ -1107,3 +1107,76 @@ need not be consistent by itself.
 In contrast, it is clear that
 a collection of inconsistent propositions
 is always inconsistent.
+
+Having defined models,
+it is natural to think of collections of models.
+
+\begin{definition}[Model Sets]
+    \label{def:modelset}
+    Given a proposition \(A\),
+    we denote the set of all models of \(A\) by \(\denote{\Mod} A\).
+    Then for a collection \(\Phi=\indexset{A_i}{i=1}{n}\)
+    of propositions,
+    the set of all models \(\Mod\Phi\) is clearly the set
+    \[
+        \bigcap_{i=1}^n\Mod A_i
+    \]
+    from \cref{def:model}.
+    The sets \(\Mod A\) and \(\Mod\Phi\) are called
+    \define[model set]{model sets} of \(A\) and \(\Phi\), respectively.
+\end{definition}
+
+Note that set-theoretic notions are used here;
+for notations one may be encouraged to read \cref{sec:sets} first.
+Since definitions of intersections and unions rely only on connectives,
+it is not a circular reasoning.
+
+\begin{remark}
+    Let \(A\), \(A_1,\dots,A_n\), \(B\) be propositions,
+    and \(\Phi\), \(\Psi\) be collections of propositions.
+    Also let \(\mathcal I\) be the set of all possible interpretations.
+    Then the followings hold:
+    \begin{itemize}
+        \item \(\Mod(A_1,\dots,A_n)=\Mod(A_1\wedge\dots\wedge A_n)\);
+        \item \(A\) is a tautology if and only if \(\Mod A=\mathcal I\);
+        \item \(A\Iff B\) if and only if \(\Mod A=\Mod B\);
+        \item \(A\) (or \(\Phi\)) is consistent
+        if and only if \(\Mod A\neq\varnothing\)
+        (or \(\Mod\Phi\neq\varnothing\));
+        \item \(A\) (or \(\Phi\)) is inconsistent
+        if and only if \(\Mod A=\varnothing\)
+        (or \(\Mod\Phi=\varnothing\));
+        \item If \(\Phi\subset\Psi\), then \(\Mod\Phi\supset\Mod\Psi\).
+    \end{itemize}
+\end{remark}
+
+\begin{definition}[Consequences]
+    \label{def:consequence}
+    Given a collection \(\Phi\) of propositions
+    and another proposition \(B\),
+    \(B\) is said to be
+    a \define{logical consequence} (or consequence in short)
+    if \(\Mod\Phi\subset\Mod B\),
+    and is denoted by \(\Phi\models B\).
+    If \(\Phi=\varnothing\),
+    then we denote as \(\models B\)
+    rather than \(\varnothing\models B\).
+\end{definition}
+
+If \(\Phi\) in the above is empty,
+then the sentence \(\models B\) means that
+\(B\) is true under every interpretation which satisfies \(\Phi\);
+but since \(\Phi\) is empty,
+\(B\) is true under any interpretation.%
+\footnote{If one wonders why this is true,
+see \cref{sec:proof}.}
+Thus the notation \(\models B\) implies that \(B\) is a tautology.
+
+Note that the symbol \(\models\) is abused
+in \cref{def:model,def:consequence}.
+In the latter case,
+\(\Phi\models B\) is read as ``\(\Phi\) entails \(B\).''
+As for why the notation is abused,
+this comes from \cref{def:model}
+where an interpretation can model
+both a proposition and a collection of propositions.
