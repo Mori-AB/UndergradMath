@@ -175,6 +175,7 @@ root = p
 print("Root :", root.word)
 
 # print LaTeX code for variables
+atomwords.sort()
 from itertools import product
 print("\\begin{array}{", end = "")
 string = ""

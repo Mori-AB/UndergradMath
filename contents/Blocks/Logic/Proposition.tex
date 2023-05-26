@@ -360,7 +360,8 @@ Further examples of tautologies are as follows.
         \hfill (Idempotency)
 
         \item \(A\wedge B\iff B\wedge A\),
-        \(A\vee B\iff B\vee A\)
+        \(A\vee B\iff B\vee A\),
+        \((A\iff B)\iff(B\iff A)\)
         \hfill (Commutativity)
 
         \item \((A\wedge B)\wedge C\iff A\wedge (B\wedge C)\),
@@ -390,6 +391,11 @@ Further examples of tautologies are as follows.
 
         \item \((A\to B)\wedge(B\to C)\to(A\to C)\)
         \hfill (Transitivity)
+
+        \item \(\neg (A\to B)\iff A\wedge\neg B\)
+
+        \item \(((A\to B)\to A)\to A\)
+        \hfill (Peirce)
     \end{nlist}
 \end{example}
 
@@ -400,28 +406,24 @@ but for more complex propositions, a modification is useful.
 
 Consider the following truth table:
 \[
-    \begin{array}{c c c} \toprule
-        A & B & C \\ \midrule
-        \top & \top & \top \\
-        \top & \top & \bot \\
-        \top & \bot & \top \\
-        \top & \bot & \bot \\
-        \bot & \top & \top \\
-        \bot & \top & \bot \\
-        \bot & \bot & \top \\
-        \bot & \bot & \bot \\ \midrule
-        \multicolumn{3}{c}{\text{Hierarchy}} \\ \bottomrule
+    \begin{array}{c c}
+        \toprule
+        A & B \\
+        \midrule
+        \top & \top \\
+        \top & \bot \\
+        \bot & \top \\
+        \bot & \bot \\
+        \midrule
+        \multicolumn{2}{c}{\text{Hierarchy}} \\
+        \bottomrule
     \end{array}
     \;
     \begin{array}{c c c c c c c} \toprule
-        ( & A & \wedge & B & ) & \wedge & C \\ \midrule
+        ( & A & \wedge & B & ) & \wedge & A \\ \midrule
          & \top & \top & \top & & \top & \top \\
-         & \top & \top & \top & & \bot & \bot \\
          & \top & \bot & \bot & & \bot & \top \\
-         & \top & \bot & \bot & & \bot & \bot \\
-         & \bot & \bot & \top & & \bot & \top \\
          & \bot & \bot & \top & & \bot & \bot \\
-         & \bot & \bot & \bot & & \bot & \top \\
          & \bot & \bot & \bot & & \bot & \bot \\ \midrule
          & 1 & 2 & 1 &  & \mathbf 3 & 1 \\ \bottomrule
     \end{array}
@@ -528,6 +530,39 @@ With the improved method, we now verify \cref{exm:taut}.
                 \bot & \bot & \bot & \top & \bot & \bot & \bot \\ 
                 \midrule
                 1 & 2 & 1 & \mathbf 3 & 1 & 2 & 1 \\
+                \bottomrule
+            \end{array}
+        \]
+        \[
+            \begin{array}{c c}
+                \toprule
+                A & B \\
+                \midrule
+                \top & \top \\
+                \top & \bot \\
+                \bot & \top \\
+                \bot & \bot \\
+                \midrule
+                \multicolumn{2}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c c c c c c c}
+                \toprule
+                ( & A & \iff & B & )
+                & \iff & ( & A & \iff & B & ) \\
+                \midrule
+                & \top & \top & \top & 
+                & \top &  & \top & \top & \top &  \\
+                & \top & \bot & \bot & 
+                & \top &  & \top & \bot & \bot &  \\
+                & \bot & \bot & \top & 
+                & \top &  & \bot & \bot & \top &  \\
+                & \bot & \top & \bot & 
+                & \top &  & \bot & \top & \bot &  \\
+                \midrule
+                & 1 & 2 & 1 & 
+                & \mathbf 3 &  & 1 & 2 & 1  & \\
                 \bottomrule
             \end{array}
         \]
@@ -1050,6 +1085,78 @@ With the improved method, we now verify \cref{exm:taut}.
                 \bottomrule
             \end{array}
         \]
+
+        \item For propositions \(A\) and \(B\),
+        the truth table is computed as below.
+        \[
+            \begin{array}{c c}
+                \toprule
+                A & B \\
+                \midrule
+                \top & \top \\
+                \top & \bot \\
+                \bot & \top \\
+                \bot & \bot \\
+                \midrule
+                \multicolumn{2}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c c c c c c c}
+                \toprule
+                \neg & ( & A & \to & B & ) &
+                \iff & A & \wedge & \neg & B \\
+                \midrule
+                \bot &  & \top & \top & \top & 
+                & \top & \top & \bot & \bot & \top \\
+                \top &  & \top & \bot & \bot & 
+                & \top & \top & \top & \top & \bot \\
+                \bot &  & \bot & \top & \top & 
+                & \top & \bot & \bot & \bot & \top \\
+                \bot &  & \bot & \top & \bot & 
+                & \top & \bot & \bot & \top & \bot \\
+                \midrule
+                3 &  & 1 & 2 & 1 & 
+                & \mathbf 4 & 1 & 3 & 2 & 1 \\
+                \bottomrule
+            \end{array}
+        \]
+
+        \item For propositions \(A\) and \(B\),
+        the truth table is computed as below.
+        \[
+            \begin{array}{c c}
+                \toprule
+                A & B \\
+                \midrule
+                \top & \top \\
+                \top & \bot \\
+                \bot & \top \\
+                \bot & \bot \\
+                \midrule
+                \multicolumn{2}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c c c c c c c}
+                \toprule
+                ( & ( & A & \to & B & ) & \to & A & )
+                & \to & A \\
+                \midrule
+                 &  & \top & \top & \top &  & \top & \top & 
+                 & \top & \top \\
+                 &  & \top & \bot & \bot &  & \top & \top & 
+                 & \top & \top \\
+                 &  & \bot & \top & \top &  & \bot & \bot & 
+                 & \top & \bot \\
+                 &  & \bot & \top & \bot &  & \bot & \bot & 
+                 & \top & \bot \\
+                \midrule
+                 &  & 1 & 2 & 1 &  & 3 & 1 & 
+                 & \mathbf 4 & 1 \\
+                \bottomrule
+            \end{array}
+        \]
     \end{nlist}
 \end{myproof}
 
@@ -1107,3 +1214,762 @@ need not be consistent by itself.
 In contrast, it is clear that
 a collection of inconsistent propositions
 is always inconsistent.
+
+Having defined models,
+it is natural to think of collections of models.
+
+\begin{definition}[Model Sets]
+    \label{def:modelset}
+    Given a proposition \(A\),
+    we denote the set of all models of \(A\) by \(\denote{\Mod} A\).
+    Then for a collection \(\Phi=\indexset{A_i}{i=1}{n}\)
+    of propositions,
+    the set of all models \(\Mod\Phi\) is clearly the set
+    \[
+        \bigcap_{i=1}^n\Mod A_i
+    \]
+    from \cref{def:model}.
+    The sets \(\Mod A\) and \(\Mod\Phi\) are called
+    \define[model set]{model sets} of \(A\) and \(\Phi\), respectively.
+\end{definition}
+
+Note that set-theoretic notions are used here;
+for notations one may be encouraged to read \cref{sec:sets} first.
+Since definitions of intersections and unions rely only on connectives,
+it is not a circular reasoning.
+
+\begin{remark}
+    \label{rem:modelset}
+    Let \(A\), \(A_1,\dots,A_n\), \(B\) be propositions,
+    and \(\Phi\), \(\Psi\) be collections of propositions.
+    Also let \(\mathcal I\) be the set of all possible interpretations.
+    Then the followings hold:
+    \begin{itemize}
+        \item \(\Mod(A_1,\dots,A_n)=\Mod(A_1\wedge\dots\wedge A_n)\);
+        \item \(A\) is a tautology if and only if \(\Mod A=\mathcal I\);
+        \item \(A\Iff B\) if and only if \(\Mod A=\Mod B\);
+        \item \(A\) (or \(\Phi\)) is consistent
+        if and only if \(\Mod A\neq\varnothing\)
+        (or \(\Mod\Phi\neq\varnothing\));
+        \item \(A\) (or \(\Phi\)) is inconsistent
+        if and only if \(\Mod A=\varnothing\)
+        (or \(\Mod\Phi=\varnothing\));
+        \item If \(\Phi\subset\Psi\), then \(\Mod\Phi\supset\Mod\Psi\).
+    \end{itemize}
+\end{remark}
+
+\begin{definition}[Consequences]
+    \label{def:consequence}
+    Given a collection \(\Phi\) of propositions
+    and another proposition \(B\),
+    \(B\) is said to be
+    a \define{logical consequence} (or consequence in short)
+    if \(\Mod\Phi\subset\Mod B\),
+    and is denoted by \(\Phi\models B\).
+    If \(\Phi=\varnothing\),
+    then we denote as \(\models B\)
+    rather than \(\varnothing\models B\).
+\end{definition}
+
+If \(\Phi\) in the above is empty,
+then the sentence \(\models B\) means that
+\(B\) is true under every interpretation which satisfies \(\Phi\);
+but since \(\Phi\) is empty,
+\(B\) is true under any interpretation.%
+\footnote{If one wonders why this is true,
+see \cref{sec:proof}.}
+Thus the notation \(\models B\) implies that \(B\) is a tautology.
+
+Note that the symbol \(\models\) is abused
+in \cref{def:model,def:consequence}.
+In the latter case,
+\(\Phi\models B\) is read as ``\(\Phi\) entails \(B\).''
+
+\begin{example}
+    \label{prop:consq}
+    The propositions obtained
+    by substituting \(\models\)'s in place of \(\iff\)
+    in \cref{exm:taut}
+    are true.
+    Moreover,
+    for propositions \(P\), \(Q\), \(R\) and \(S\),
+    the followings hold.
+    \begin{nlist}
+        \item \(P,P\to Q\models Q\).
+        \item \(P\to Q,\neg Q\models \neg P\).
+        \item \(P\to Q,Q\to R\models P\to R\).
+        \item \(P\vee Q,\neg Q\models P\).
+        \item \(P\to R,Q\to S,P\vee Q\models R\vee S\).
+        \item \(P\to R,Q\to S,\neg R\vee\neg S\models\neg P\vee\neg Q\).
+        \item \(P\wedge Q\models P\).
+        \item \(P\models P\vee Q\).
+        \item \(P\to Q, P\to R\models P\to(Q\wedge R)\).
+        \item \(\models P\vee\neg P\).
+        \item \(Q\models P\to Q\).
+    \end{nlist}
+\end{example}
+\begin{myproof}
+    First,
+    consider a tautology from \cref{exm:taut}
+    in the form of \(X\iff Y\).
+    Then if an interpretation \(I\) models \(X\),
+    the fact that \(I\) models \(X\iff Y\) implies that
+    \(I\) models \(Y\);
+    thus \(X\models Y\).
+
+    Now we prove the additional items.
+
+    \begin{nlist}
+        \item Let \(I\) be an interpretation
+        which models both \(P\) and \(P\to Q\).
+        Then by the truth table
+        \[
+            \begin{array}{c c}
+                \toprule
+                P & Q \\
+                \midrule
+                \top & \top \\
+                \top & \bot \\
+                \bot & \top \\
+                \bot & \bot \\
+                \midrule
+                \multicolumn{2}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c c c}
+                \toprule
+                P & \wedge & ( & P & \to & Q & ) \\
+                \midrule
+                \top & \top &  & \top & \top & \top &  \\
+                \top & \bot &  & \top & \bot & \bot &  \\
+                \bot & \bot &  & \bot & \top & \top &  \\
+                \bot & \bot &  & \bot & \top & \bot &  \\
+                \midrule
+                1 & \mathbf 3 &  & 1 & 2 & 1  & \\
+                \bottomrule
+            \end{array}
+        \]
+        we observe that
+        \(I\) assigns the truth value \(\top\) to \(Q\).
+
+        \item Let \(I\) be an interpretation
+        which models both \(P\to Q\) and \(\neg Q\).
+        Then by the truth table
+        \[
+            \begin{array}{c c}
+                \toprule
+                P & Q \\
+                \midrule
+                \top & \top \\
+                \top & \bot \\
+                \bot & \top \\
+                \bot & \bot \\
+                \midrule
+                \multicolumn{2}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c c c c}
+                \toprule
+                ( & P & \to & Q & ) & \wedge & \neg & Q \\
+                \midrule
+                 & \top & \top & \top &  & \bot & \bot & \top \\
+                 & \top & \bot & \bot &  & \bot & \top & \bot \\
+                 & \bot & \top & \top &  & \bot & \bot & \top \\
+                 & \bot & \top & \bot &  & \top & \top & \bot \\
+                \midrule
+                 & 1 & 2 & 1 &  & \mathbf 3 & 2 & 1 \\
+                \bottomrule
+            \end{array}
+        \]
+        we observe that
+        \(I\) assigns the truth value \(\bot\) to \(P\);
+        hence \(I\) models \(\neg P\).
+
+        \item Let \(I\) be an interpretation
+        which models both \(P\to Q\) and \(Q\to R\).
+        Then by the truth table
+        \[
+            \begin{array}{c c c}
+                \toprule
+                P & Q & R \\
+                \midrule
+                \top & \top & \top \\
+                \top & \top & \bot \\
+                \top & \bot & \top \\
+                \top & \bot & \bot \\
+                \bot & \top & \top \\
+                \bot & \top & \bot \\
+                \bot & \bot & \top \\
+                \bot & \bot & \bot \\
+                \midrule
+                \multicolumn{3}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c c c c c c c}
+                \toprule
+                ( & P & \to & Q & ) & \wedge & ( & Q & \to & R & ) \\
+                \midrule
+                 & \top & \top & \top & 
+                 & \top &  & \top & \top & \top &  \\
+                 & \top & \top & \top & 
+                 & \bot &  & \top & \bot & \bot &  \\
+                 & \top & \bot & \bot & 
+                 & \bot &  & \bot & \top & \top &  \\
+                 & \top & \bot & \bot & 
+                 & \bot &  & \bot & \top & \bot &  \\
+                 & \bot & \top & \top & 
+                 & \top &  & \top & \top & \top &  \\
+                 & \bot & \top & \top & 
+                 & \bot &  & \top & \bot & \bot &  \\
+                 & \bot & \top & \bot & 
+                 & \top &  & \bot & \top & \top &  \\
+                 & \bot & \top & \bot & 
+                 & \top &  & \bot & \top & \bot &  \\
+                \midrule
+                 & 1 & 2 & 1 &  & \mathbf 3 &  & 1 & 2 & 1  & \\
+                \bottomrule
+            \end{array}
+            \qquad
+            \begin{array}{c c}
+                \toprule
+                P & R \\
+                \midrule
+                \top & \top \\
+                \top & \bot \\
+                \bot & \top \\
+                \bot & \bot \\
+                \midrule
+                \multicolumn{2}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c}
+                \toprule
+                P & \to & R \\
+                \midrule
+                \top & \top & \top \\
+                \top & \bot & \bot \\
+                \bot & \top & \top \\
+                \bot & \top & \bot \\
+                \midrule
+                1 & \mathbf 2 & 1 \\
+                \bottomrule
+            \end{array}
+        \]
+        we observe that \(I\) always models \(P\to R\).
+        
+        \item Let \(I\) be an interpretation which models
+        both \(P\vee Q\) and \(\neg Q\).
+        Then by the truth table
+        \[
+            \begin{array}{c c}
+                \toprule
+                P & Q \\
+                \midrule
+                \top & \top \\
+                \top & \bot \\
+                \bot & \top \\
+                \bot & \bot \\
+                \midrule
+                \multicolumn{2}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c c c c}
+                \toprule
+                ( & P & \vee & Q & ) & \wedge & \neg & Q \\
+                \midrule
+                 & \top & \top & \top &  & \bot & \bot & \top \\
+                 & \top & \top & \bot &  & \top & \top & \bot \\
+                 & \bot & \top & \top &  & \bot & \bot & \top \\
+                 & \bot & \bot & \bot &  & \bot & \top & \bot \\
+                \midrule
+                 & 1 & 2 & 1 &  & \mathbf 3 & 2 & 1 \\
+                \bottomrule
+            \end{array}
+        \]
+        we observe that \(I\) always models \(P\).
+
+        \item Let \(I\) be an interpretation which models
+        \(P\to R\), \(Q\to S\) and \(P\vee Q\).
+        Then by the truth table
+        \[
+            \begin{array}{c c c c}
+                \toprule
+                P & Q & R & S \\
+                \midrule
+                \top & \top & \top & \top \\
+                \top & \top & \top & \bot \\
+                \top & \top & \bot & \top \\
+                \top & \top & \bot & \bot \\
+                \top & \bot & \top & \top \\
+                \top & \bot & \top & \bot \\
+                \top & \bot & \bot & \top \\
+                \top & \bot & \bot & \bot \\
+                \bot & \top & \top & \top \\
+                \bot & \top & \top & \bot \\
+                \bot & \top & \bot & \top \\
+                \bot & \top & \bot & \bot \\
+                \bot & \bot & \top & \top \\
+                \bot & \bot & \top & \bot \\
+                \bot & \bot & \bot & \top \\
+                \bot & \bot & \bot & \bot \\
+                \midrule
+                \multicolumn{4}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c c c c c c c c c c c c c}
+                \toprule
+                ( & P & \to & R & )
+                & \wedge & ( & Q & \to & S & )
+                & \wedge & ( & P & \vee & Q & ) \\
+                \midrule
+                 & \top & \top & \top & 
+                 & \top &  & \top & \top & \top & 
+                 & \top &  & \top & \top & \top &  \\
+                 & \top & \top & \top & 
+                 & \bot &  & \top & \bot & \bot & 
+                 & \bot &  & \top & \top & \top &  \\
+                 & \top & \bot & \bot & 
+                 & \bot &  & \top & \top & \top & 
+                 & \bot &  & \top & \top & \top &  \\
+                 & \top & \bot & \bot & 
+                 & \bot &  & \top & \bot & \bot & 
+                 & \bot &  & \top & \top & \top &  \\
+                 & \top & \top & \top & 
+                 & \top &  & \bot & \top & \top & 
+                 & \top &  & \top & \top & \bot &  \\
+                 & \top & \top & \top & 
+                 & \top &  & \bot & \top & \bot & 
+                 & \top &  & \top & \top & \bot &  \\
+                 & \top & \bot & \bot & 
+                 & \bot &  & \bot & \top & \top & 
+                 & \bot &  & \top & \top & \bot &  \\
+                 & \top & \bot & \bot & 
+                 & \bot &  & \bot & \top & \bot & 
+                 & \bot &  & \top & \top & \bot &  \\
+                 & \bot & \top & \top & 
+                 & \top &  & \top & \top & \top & 
+                 & \top &  & \bot & \top & \top &  \\
+                 & \bot & \top & \top & 
+                 & \bot &  & \top & \bot & \bot & 
+                 & \bot &  & \bot & \top & \top &  \\
+                 & \bot & \top & \bot & 
+                 & \top &  & \top & \top & \top & 
+                 & \top &  & \bot & \top & \top &  \\
+                 & \bot & \top & \bot & 
+                 & \bot &  & \top & \bot & \bot & 
+                 & \bot &  & \bot & \top & \top &  \\
+                 & \bot & \top & \top & 
+                 & \top &  & \bot & \top & \top & 
+                 & \bot &  & \bot & \bot & \bot &  \\
+                 & \bot & \top & \top & 
+                 & \top &  & \bot & \top & \bot & 
+                 & \bot &  & \bot & \bot & \bot &  \\
+                 & \bot & \top & \bot & 
+                 & \top &  & \bot & \top & \top & 
+                 & \bot &  & \bot & \bot & \bot &  \\
+                 & \bot & \top & \bot & 
+                 & \top &  & \bot & \top & \bot & 
+                 & \bot &  & \bot & \bot & \bot &  \\
+                \midrule
+                 & 1 & 2 & 1 & 
+                 & 3 &  & 1 & 2 & 1 & 
+                 & \mathbf 4 &  & 1 & 2 & 1  & \\
+                \bottomrule
+            \end{array}
+        \]
+        we observe that
+        \(I\) always models \(R\vee S\).
+        
+        \item Let \(I\) be an interpretation which models
+        \(P\to R\), \(Q\to S\) and \(\neg R\vee\neg S\).
+        Then by \cref{exm:taut}(7)
+        we have \(\neg R\vee\neg S\Iff\neg(R\wedge S)\),
+        and from the truth table
+        \[
+            \begin{array}{c c c c}
+                \toprule
+                P & Q & R & S \\
+                \midrule
+                \top & \top & \top & \top \\
+                \top & \top & \top & \bot \\
+                \top & \top & \bot & \top \\
+                \top & \top & \bot & \bot \\
+                \top & \bot & \top & \top \\
+                \top & \bot & \top & \bot \\
+                \top & \bot & \bot & \top \\
+                \top & \bot & \bot & \bot \\
+                \bot & \top & \top & \top \\
+                \bot & \top & \top & \bot \\
+                \bot & \top & \bot & \top \\
+                \bot & \top & \bot & \bot \\
+                \bot & \bot & \top & \top \\
+                \bot & \bot & \top & \bot \\
+                \bot & \bot & \bot & \top \\
+                \bot & \bot & \bot & \bot \\
+                \midrule
+                \multicolumn{4}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c c c c c c c c c c c c c c}
+                \toprule
+                ( & P & \to & R & )
+                & \wedge & ( & Q & \to & S & )
+                & \wedge & \neg & ( & R & \wedge & S & ) \\
+                \midrule
+                 & \top & \top & \top & 
+                 & \top &  & \top & \top & \top & 
+                 & \bot & \bot &  & \top & \top & \top &  \\
+                 & \top & \top & \top & 
+                 & \bot &  & \top & \bot & \bot & 
+                 & \bot & \top &  & \top & \bot & \bot &  \\
+                 & \top & \bot & \bot & 
+                 & \bot &  & \top & \top & \top & 
+                 & \bot & \top &  & \bot & \bot & \top &  \\
+                 & \top & \bot & \bot & 
+                 & \bot &  & \top & \bot & \bot & 
+                 & \bot & \top &  & \bot & \bot & \bot &  \\
+                 & \top & \top & \top & 
+                 & \top &  & \bot & \top & \top & 
+                 & \bot & \bot &  & \top & \top & \top &  \\
+                 & \top & \top & \top & 
+                 & \top &  & \bot & \top & \bot & 
+                 & \top & \top &  & \top & \bot & \bot &  \\
+                 & \top & \bot & \bot & 
+                 & \bot &  & \bot & \top & \top & 
+                 & \bot & \top &  & \bot & \bot & \top &  \\
+                 & \top & \bot & \bot & 
+                 & \bot &  & \bot & \top & \bot & 
+                 & \bot & \top &  & \bot & \bot & \bot &  \\
+                 & \bot & \top & \top & 
+                 & \top &  & \top & \top & \top & 
+                 & \bot & \bot &  & \top & \top & \top &  \\
+                 & \bot & \top & \top & 
+                 & \bot &  & \top & \bot & \bot & 
+                 & \bot & \top &  & \top & \bot & \bot &  \\
+                 & \bot & \top & \bot & 
+                 & \top &  & \top & \top & \top & 
+                 & \top & \top &  & \bot & \bot & \top &  \\
+                 & \bot & \top & \bot & 
+                 & \bot &  & \top & \bot & \bot & 
+                 & \bot & \top &  & \bot & \bot & \bot &  \\
+                 & \bot & \top & \top & 
+                 & \top &  & \bot & \top & \top & 
+                 & \bot & \bot &  & \top & \top & \top &  \\
+                 & \bot & \top & \top & 
+                 & \top &  & \bot & \top & \bot & 
+                 & \top & \top &  & \top & \bot & \bot &  \\
+                 & \bot & \top & \bot & 
+                 & \top &  & \bot & \top & \top & 
+                 & \top & \top &  & \bot & \bot & \top &  \\
+                 & \bot & \top & \bot & 
+                 & \top &  & \bot & \top & \bot & 
+                 & \top & \top &  & \bot & \bot & \bot &  \\
+                \midrule
+                 & 1 & 2 & 1 & 
+                 & 3 &  & 1 & 2 & 1 & 
+                 & \mathbf 4 & 3 &  & 1 & 2 & 1  & \\
+                \bottomrule
+            \end{array}
+        \]
+        we observe that
+        \(I\) always models \(\neg P\vee\neg Q\).
+        
+        \item Let \(I\) be an interpretation which models \(P\wedge Q\).
+        Then by the truth table
+        \[
+            \begin{array}{c c}
+                \toprule
+                P & Q \\
+                \midrule
+                \top & \top \\
+                \top & \bot \\
+                \bot & \top \\
+                \bot & \bot \\
+                \midrule
+                \multicolumn{2}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c}
+                \toprule
+                P & \wedge & Q \\
+                \midrule
+                \top & \top & \top \\
+                \top & \bot & \bot \\
+                \bot & \bot & \top \\
+                \bot & \bot & \bot \\
+                \midrule
+                1 & \mathbf 2 & 1 \\
+                \bottomrule
+            \end{array}
+        \]
+        we observe that
+        \(I\) always models \(P\).
+        
+        \item Let \(I\) be an interpretation that models \(P\).
+        Then it is clear that
+        \(I\) always models \(P\vee Q\).
+        
+        \item Let \(I\) be an interpretation that models
+        both \(P\to Q\) and \(P\to R\).
+        Then from the truth table
+        \[
+            \begin{array}{c c c}
+                \toprule
+                P & Q & R \\
+                \midrule
+                \top & \top & \top \\
+                \top & \top & \bot \\
+                \top & \bot & \top \\
+                \top & \bot & \bot \\
+                \bot & \top & \top \\
+                \bot & \top & \bot \\
+                \bot & \bot & \top \\
+                \bot & \bot & \bot \\
+                \midrule
+                \multicolumn{3}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c c c c c c c}
+                \toprule
+                ( & P & \to & Q & )
+                & \wedge & ( & P & \to & R & ) \\
+                \midrule
+                 & \top & \top & \top & 
+                 & \top &  & \top & \top & \top &  \\
+                 & \top & \top & \top & 
+                 & \bot &  & \top & \bot & \bot &  \\
+                 & \top & \bot & \bot & 
+                 & \bot &  & \top & \top & \top &  \\
+                 & \top & \bot & \bot & 
+                 & \bot &  & \top & \bot & \bot &  \\
+                 & \bot & \top & \top & 
+                 & \top &  & \bot & \top & \top &  \\
+                 & \bot & \top & \top & 
+                 & \top &  & \bot & \top & \bot &  \\
+                 & \bot & \top & \bot & 
+                 & \top &  & \bot & \top & \top &  \\
+                 & \bot & \top & \bot & 
+                 & \top &  & \bot & \top & \bot &  \\
+                \midrule
+                 & 1 & 2 & 1 & 
+                 & \mathbf 3 &  & 1 & 2 & 1  & \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c c c c}
+                \toprule
+                P & \to & ( & Q & \wedge & R & ) \\
+                \midrule
+                \top & \top &  & \top & \top & \top &  \\
+                \top & \bot &  & \top & \bot & \bot &  \\
+                \top & \bot &  & \bot & \bot & \top &  \\
+                \top & \bot &  & \bot & \bot & \bot &  \\
+                \bot & \top &  & \top & \top & \top &  \\
+                \bot & \top &  & \top & \bot & \bot &  \\
+                \bot & \top &  & \bot & \bot & \top &  \\
+                \bot & \top &  & \bot & \bot & \bot &  \\
+                \midrule
+                1 & \mathbf 3 &  & 1 & 2 & 1  & \\
+                \bottomrule
+            \end{array}
+        \]
+        we observe that
+        \(I\) always models \(P\to(Q\wedge R)\).
+        
+        \item Let \(I\) be an interpretation that models
+        an empty set of propositions;
+        that is, let \(I\) be any interpretation.
+        Then the truth table
+        \[
+            \begin{array}{c}
+                \toprule
+                P \\
+                \midrule
+                \top \\
+                \bot \\
+                \midrule
+                \multicolumn{1}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c c}
+                \toprule
+                P & \vee & \neg & P \\
+                \midrule
+                \top & \top & \bot & \top \\
+                \bot & \top & \top & \bot \\
+                \midrule
+                1 & \mathbf 3 & 2 & 1 \\
+                \bottomrule
+            \end{array}
+        \]
+        we observe that
+        \(I\) always models \(P\vee\neg P\).
+
+        \item Let \(I\) be an interpretation that models \(Q\).
+        Then from the truth table
+        \[
+            \begin{array}{c c}
+                \toprule
+                P & Q \\
+                \midrule
+                \top & \top \\
+                \top & \bot \\
+                \bot & \top \\
+                \bot & \bot \\
+                \midrule
+                \multicolumn{2}{c}{\text{Hierarchy}} \\
+                \bottomrule
+            \end{array}
+            \;
+            \begin{array}{c c c}
+                \toprule
+                P & \to & Q \\
+                \midrule
+                \top & \top & \top \\
+                \top & \bot & \bot \\
+                \bot & \top & \top \\
+                \bot & \top & \bot \\
+                \midrule
+                1 & \mathbf 2 & 1 \\
+                \bottomrule
+            \end{array}
+        \]
+        we observe that
+        \(P\to Q\) is true whenever \(Q\) is true.
+        Hence \(I\) models \(P\to Q\).
+        \rightqed
+    \end{nlist}
+\end{myproof}
+
+Before we move on to the next section,
+we state a very important result.
+
+\begin{lemma}
+    \label{lem:consq}
+    For any propositions \(A_1,\dots,A_n\) and \(B\),
+    \begin{nlist}
+        \item \(A_1,\dots,A_n\models B\)
+        if and only if
+        \(A_1\wedge\cdots\wedge A_n\to B\) is a tautology.
+        \item \(A_1,\dots,A_n\models B\)
+        if and only if
+        \(A_1,\dots,A_{n-1}\models A_n\to B\).
+        \item \(A_1,\dots,A_n\models B\)
+        if and only if
+        \(\{A_1,\dots,A_n,\neg B\}\) is inconsistent.
+    \end{nlist}
+\end{lemma}
+\begin{sketch}
+    Since we do not know the number of variables,
+    it is impossible (and impractical for large \(n\))
+    to draw the full truth table.
+    Hence we need to reason them by words.
+    ``Proving'' something is to be discussed in detail later;
+    for now, we present a tangible (but not yet justified) solution.
+    To prove the statement ``\(A\) if and only if \(B\),''
+    we need to prove two statements
+    ``\(A\) implies \(B\)''
+    and ``\(B\) implies \(A\).''
+\end{sketch}
+\begin{myproof}
+    Let \(A_1,\dots,A_n\) and \(B\) be propositions.
+    \begin{nlist}
+        \item First, suppose that \(A_1,\dots,A_n\) entails \(B\),
+        and let \(I\) be an interpretation.
+        
+        If \(A_1\wedge\dots\wedge A_n\) is false under \(I\),
+        then the proposition \(A_1\wedge\dots\wedge A_n\to B\)
+        is vacuously true.
+        
+        Now suppose that
+        \(A_1\wedge\dots\wedge A_n\) is true under \(I\).
+        Then each \(A_1,\dots,A_n\) is true under \(I\)
+        and so \(I\in\Mod(A_1,\dots,A_n)\).
+        Since \(A_1,\dots,A_n\models B\) implies
+        \(\Mod(A_1,\dots,A_n)\subset\Mod B\),
+        \(I\in\Mod B\) and \(B\) is also true under \(I\).
+
+        Therefore the statement \(A_1\wedge\dots\wedge A_n\to B\)
+        is always true under any interpretation,
+        and thus is a tautology.
+
+        Conversely,
+        suppose that \(A_1\wedge\dots\wedge A_n\to B\) is a tautology,
+        and let \(I\in\Mod(A_1,\dots,A_n)\).
+        Then since each \(A_1,\dots,A_n\) is true under \(I\),
+        \(A_1\wedge\dots\wedge A_n\) is also true under \(I\).
+        Now by our assumption,
+        \(A_1\wedge\dots\wedge A_n\to B\) must be true under \(I\);
+        thus we have that
+        \(B\) is true under \(I\), that is, \(I\in\Mod B\).
+
+        Therefore \(\Mod(A_1,\dots,A_n)\subset\Mod B\),
+        and we conclude that \(\{A_1,\dots,A_n\}\) entails \(B\).
+
+        \item First, suppose that \(A_1,\dots,A_n\) entails \(B\),
+        and let \(I\in\Mod(A_1,\dots,A_{n-1})\).
+
+        If \(A_n\) is false under \(I\),
+        then the proposition \(A_n\to B\) is vacuously true under \(I\).
+
+        Now if \(A_n\) is true under \(I\),
+        then \(I\in\Mod(A_1,\dots,A_n)\);
+        since \(A_1,\dots,A_n\models B\),
+        \(I\in\Mod B\)
+        and the proposition \(A_n\to B\) is also true under \(I\).
+
+        Therefore \(I\in\Mod B\) in either cases
+        and \(\Mod(A_1,\dots,A_{n-1})\subset\Mod(A_n\to B)\) holds;
+        thus we conclude that
+        \(\{A_1,\dots,A_{n-1}\}\) entails \(A_n\to B\).
+
+        Conversely, suppose that
+        \(A_1,\dots,A_{n-1}\) entails \(A_n\to B\),
+        and let \(I\) be in \(\Mod(A_1,\dots,A_n)\).
+        Since \(\Mod(A_1,\dots,A_n)\subset\Mod(A_1,\dots,A_{n-1})\)
+        by \cref{rem:modelset},
+        \(I\in\Mod(A_1,\dots,A_{n-1})\) and thus \(I\in\Mod(A_n\to B)\).
+        Note that \(I\in\Mod(A_1,\dots,A_n)\) also models \(A_n\);
+        thus \(I\) models \(B\), that is, \(I\in\Mod B\).
+
+        Therefore \(\Mod(A_1,\dots,A_n)\subset\Mod B\),
+        and we conculde that \(\{A_1,\dots,A_n\}\) entails \(B\).
+
+        \item First, suppose that \(\{A_1,\dots,A_n\}\) entails \(B\),
+        and let \(I\) be an interpretation.
+        
+        If \(I\) does not model \(\{A_1,\dots,A_n\}\),
+        then \(I\) cannot model \(\{A_1,\dots,A_n,\neg B\}\)
+        by \cref{rem:modelset}.
+
+        If \(I\) models \(\{A_1,\dots,A_n\}\),
+        then the assumption implies that \(I\) also models \(B\).
+        But then \(I\) cannot model \(\neg B\)
+        and thus \(I\notin\Mod(A_1,\dots,A_n,\neg B)\).
+
+        Hence no interpretation can model \(\{A_1,\dots,A_n,\neg B\}\),
+        and thus it is inconsistent.
+
+        To prove the converse,
+        we prove its contrapositive.
+        Suppose that \(\{A_1,\dots,A_n\}\) does not entail \(B\).
+        Then there exists an interpretation \(I\)
+        which models \(\{A_1,\dots,A_n\}\) but does not model \(B\).
+        Such an interpretationi must model \(\neg B\),
+        and therefore \(\{A_1,\dots,A_n,\neg B\}\) is consistent.
+
+        Hence if \(\{A_1,\dots,A_n,\neg B\}\) is inconsistent,
+        then \(\{A_1,\dots,A_n\}\) entails \(B\).
+        \rightqed
+    \end{nlist}
+\end{myproof}
