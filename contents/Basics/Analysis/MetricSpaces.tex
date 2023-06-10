@@ -1,1 +1,60 @@
 \setsection{Metric Spaces} \label{sec:metric}
+
+As mentioned in the start of this chapter,
+a primary goal of basic analysis
+is to rigorously redefine the concept of limits.
+In the casual sense,
+the concept requires some notion of closeness.
+Here we define closesness by measuring the distance between two points.
+
+Now a question arises:
+how do we define distance?
+As in defining real numbers,
+we first list some properties that are desirable for distances.
+Since our intuition is based on \(\Rmath^n\),
+these strongly resemble our everyday notion of distance.
+
+\begin{itemize}
+    \item Distance is always nonnegative;
+    if the distance between two points are zero,
+    then the two points must be equal and vice versa.
+    
+    \item The distance between points \(a\) and \(b\)
+    is equal when \(a\) and \(b\) are interchanged;
+    that is,
+    the order of choosing points is irrelevant.
+    
+    \item There are no such things
+    as ``infinitely far'' or ``infinitely close.''
+    
+    \item We wish a straight line to be the shortest path
+    connecting two points.
+\end{itemize}
+
+It is intuitively clear that
+the value of a distance should be a number.
+The question is: Which number?
+First, for the first property,
+the number system we use must be ordered.
+Also since the third property must hold,
+the numbers must be in an Archimedean field.
+Knowing that \(\Rmath\) is the largest Archimedean field,
+we define the distance to be a (nonnegative) real number.
+
+Hence we have formulated the following definition.
+
+\begin{definition}[Metric (Spaces)]
+    \label{def:metric}
+    Given a set \(X\),
+    the function \(d:X\times X\to\Rmath\) is called
+    a \define{metric}
+    if it satisfies the following:
+    \begin{itemize}
+        \item For any \(x,y\in X\), \(d(x,y)\ge 0\).
+        Moreover, \(d(x,y)=0\) if and only if \(x=y\).
+
+        \item For any \(x,y\in X\), \(d(x,y)=d(y,x)\).
+        
+        \item For any \(x,y,z\in X\), \(d(x,z)\le d(x,y)+d(y,z)\).
+    \end{itemize}
+\end{definition}
