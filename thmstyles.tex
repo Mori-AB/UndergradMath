@@ -12,49 +12,65 @@
     style=lightthm,
     name=Definition,
     refname={Definition,Definitions},
-    within=section
+    within=section,
+    preheadhook=\vspace{0.4\baselineskip},
+    postfoothook=\vspace{0.6\baselineskip}
 ]{definition}
 \declaretheorem[
     style=lightthm,
     name=Definition,
     refname={Definition,Definitions},
-    unnumbered
+    unnumbered,
+    preheadhook=\vspace{0.4\baselineskip},
+    postfoothook=\vspace{0.6\baselineskip}
 ]{definition*}
 \declaretheorem[
     style=lightthm,
     name=Example,
     refname={Example,Examples},
-    sibling=definition
+    sibling=definition,
+    preheadhook=\vspace{0.4\baselineskip},
+    postfoothook=\vspace{0.6\baselineskip}
 ]{example}
 \declaretheorem[
     style=lightthm,
     name=Exercise,
     refname={Exercise,Exercises},
-    sibling=definition
+    sibling=definition,
+    preheadhook=\vspace{0.4\baselineskip},
+    postfoothook=\vspace{0.6\baselineskip}
 ]{exercise}
 \declaretheorem[
     style=lightthm,
     name=Notation,
     refname={Notation,Notations},
-    sibling=definition
+    sibling=definition,
+    preheadhook=\vspace{0.4\baselineskip},
+    postfoothook=\vspace{0.6\baselineskip}
 ]{notation}
 \declaretheorem[
     style=lightthm,
     name=Caution,
     refname={Caution,Cautions},
-    sibling=definition
+    sibling=definition,
+    preheadhook=\vspace{0.4\baselineskip},
+    postfoothook=\vspace{0.6\baselineskip}
 ]{caution}
 \declaretheorem[
     style=lightthm,
     name=Remark,
     refname={Remark,Remarks},
-    sibling=definition
+    sibling=definition,
+    preheadhook=\vspace{0.4\baselineskip},
+    postfoothook=\vspace{0.6\baselineskip}
 ]{remark}
 \declaretheorem[
     style=lightthm,
     name=Redefinition,
     refname={Redefinition,Redefinitions},
-    sibling=definition
+    sibling=definition,
+    preheadhook=\vspace{0.4\baselineskip},
+    postfoothook=\vspace{0.6\baselineskip}
 ]{redefinition}
 % \declaretheorem[
 %     style=lightthm,
@@ -66,7 +82,9 @@
     style=lightthm,
     name=Custom,
     refname={Custom,Customs},
-    sibling=definition
+    sibling=definition,
+    preheadhook=\vspace{0.4\baselineskip},
+    postfoothook=\vspace{0.6\baselineskip}
 ]{custom}
 
 \declaretheoremstyle[
@@ -118,7 +136,9 @@
     style=normalthm,
     name=Question,
     refname={Question,Questions},
-    sibling=definition
+    sibling=definition,
+    preheadhook=\vspace{0.4\baselineskip},
+    postfoothook=\vspace{0.6\baselineskip}
 ]{question}
 
 \declaretheoremstyle[
@@ -136,12 +156,14 @@
 \declaretheorem[
     style=proof,
     name=Proof,
-    unnumbered
+    unnumbered,
+    postfoothook=\vspace{0.6\baselineskip}
 ]{myproof}
 \declaretheorem[
     style=proof,
     name=Solution,
-    unnumbered
+    unnumbered,
+    postfoothook=\vspace{0.6\baselineskip}
 ]{solution}
 \newcommand\rightqed{{\hfill\qedhere}} % place qed at right side
 
@@ -156,5 +178,6 @@
 
 \declaretheorem[
     style=miscellaneous,
-    unnumbered
+    unnumbered,
+    postfoothook=\vspace{0.6\baselineskip}
 ]{misc}

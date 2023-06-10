@@ -1,1 +1,364 @@
 \setsection{The Real Numbers} \label{sec:reals}
+
+% TODO: fix labels when ready
+We have constructed the real numbers in \cref{sec:reals}.
+Here we take a look at what properties do the real numbers possess,
+and what advantages do the formulation have
+compared to the `intuitive' definition.
+
+We first restate the defining property of the reals.
+
+\begin{definition}
+    \label{def:reals}
+    There exists a complete ordered field \(\Rmath\),
+    that is, a set with the following properties:
+    \begin{itemize}
+        \item The set \(\Rmath\) has two (well-known) operations;
+        namely, addition and multiplication.
+        \item The set \(\Rmath\) is totally ordered.
+        \item The set \(\Rmath\) has the least upper bound property;
+        given any nonempty set which is bounded above,
+        one can find the least upper bound of it in \(\Rmath\).
+    \end{itemize}
+    The members of \(\Rmath\) are called the \textdef{real numbers}.
+\end{definition}
+
+Again, the definition above is well-defined
+since any two complete ordered fields are isomorphic.
+Hence we do not need to consider how they are constructed,
+but only use the defining properties of \(\Rmath\)
+(recall that we have constructed \(\Rmath\) in two ways).
+
+The third condition of \cref{def:reals}
+is sometimes called the \textdef{completeness} condition.
+There are several ways on
+calling a set \emph{complete} in real analysis;
+it helps to distinguish them later on.
+
+We first show a seemingly obvious
+(and indeed clear from the construction)
+fact about the rational numbers:
+there are no ``infinitely large'' or ``infinitely small'' values.
+\begin{proposition}
+    \label{prop:archimedean}
+    The following holds in \(\Rmath\):
+    \begin{nlist}
+        \item The set \(\Nmath\) of natural numbers is unbounded above;
+        that is,
+        given any \(x>0\), there exists \(n\in\Nmath\) with \(n>x\).
+        \item Given any \(x,y\in\Rmath\) with \(x>0\),
+        there exists \(n\in\Nmath\) with \(nx>y\).
+        \item Given any \(x,y\in\Rmath\),
+        there exists a rational number between \(x\) and \(y\)
+        (of course, unless \(x=y\)).
+    \end{nlist}
+\end{proposition}
+\begin{myproof}
+    \begin{nlist}
+        \item This comes directly from the construction of \(\Nmath\),
+        or can be viewed as a special result of (2).
+        
+        \item If \(x>y\), then by taking \(n=1\) we are done.
+        
+        Now assume that \(x\le y\),
+        and consider the set
+        \[
+            S=\set{mx}{m\in\Nmath, mx\le y}.
+        \]
+        Then since \(1\in S\),
+        \(S\) is clearly nonempty and bounded above by \(y\);
+        thus there exists a least upper bound \(z\) of \(S\).
+        
+        Since \(z-x<z\) is not an upper bound of \(z\),
+        there exists some \(nx\in S\) such that \(z-x<nx\le z\).
+        Therefore \(nx\le z<(n+1)x\),
+        and since \(z\) itself is an upper bound of \(S\),
+        we conclude that \((n+1)x\notin S\);
+        that is, \((n+1)x>y\).
+
+        \item Without loss of generality,
+        we assume that \(x<y\).
+        Then since \(y-x>0\),
+        by (2) there exists some \(n\in\Nmath\) such that
+        \(n(y-x)>1\).
+
+        Applying (2) again we obtain integers \(m_1,m_2\)
+        such that \(m_1>nx\) and \(m_2>-nx\).
+        Then we observe that \(-m_2<nx<m_1\),
+        and thus
+        \[
+            m-1\le nx<m
+        \]
+        holds for some integer \(-m_2\le m\le m_1\).
+        Hence
+        \[
+            nx<m\le 1+nx<ny
+        \]
+        implies 
+        \[
+            x<\frac{m}{n}<y
+        \]
+        and we are done.
+        \rightqed
+    \end{nlist}
+\end{myproof}
+
+Note that for \(y>0\), (2) is a direct consequence of (1).
+Here we have proved it as in \cite{PMA}
+to demonstrate the use of the least upper bound property.
+However, \(\Rmath\) is not the only field which (2) holds;
+a field which (2) holds is said to be
+an \define[field!Archimedean]{Archimedean field}.
+For example, \(\Qmath\) is also an Archimedean field.
+It is known that
+\(\Rmath\) is the largest Archimedean field up to ismorphism.
+
+Item (3) is also stated as
+\phrase{the rational numbers are \textdef{dense} in \(\Rmath\)}.
+What it exactly means will be investigated in detail
+at \cref{chap:PStopo}.
+
+Another famous example of using the least upper bound property
+is proving the existence and uniqueness of
+the \(n\)-th root of a positive number.
+
+\begin{example}
+    \label{exm:nthroot}
+    Let \(a>0\) and \(n\) be a positive integer.
+    
+    Consider the subset \(S=\set{r\in\Qmath}{r^n<a}\) of \(\Rmath\).
+    For \(t=a/(1+a)\), \(0<t<1\) implies \(t^n<t<a\).
+    Thus \(t\in S\) and so \(S\) is nonempty.
+    Also, if \(r>1+a\),
+    then
+    \[
+        r^n>(1+a)^n\ge 1+a>a
+    \]
+    and thus \(r\notin S\).
+    Therefore \(1+a\) is an upper bound for \(S\).
+
+    Now by the least upper bound property of \(\Rmath\),
+    there exists a least upper bound \(b=\sup S\).
+    Note that \(b\ge a/(1+a)>0\).
+    Suppose to the contrary that
+    \(b^n\neq a\).
+    Then by the trichotomy, either \(b^n<a\) or \(b^n>a\) must hold.
+
+    Suppose that \(b^n<a\).
+    Then there exists \(\epsilon>0\) such that
+    \[
+        \epsilon<\min\left\{1,\frac{a-b^n}{n(b+1)^{n-1}}\right\}
+    \]
+    and so
+    \[
+        (b+\epsilon)^n-b^n
+        =\epsilon\sum_{k=0}^{n-1}(b+\epsilon)^kb^{n-1-k}
+        <\epsilon\cdot n(b+\epsilon)^{n-1}
+        <\epsilon\cdot n(b+1)^{n-1}
+        <a-b^n.
+    \]
+    Hence \(b<b+\epsilon<a\),
+    and by \cref{prop:archimedean}
+    there exists \(r\in\Qmath\) such that
+    \(b<r<b+\epsilon\) and \(r^n<(b+\epsilon)^n<a\).
+    This contradicts the choice of \(b\) being an upper bound of \(S\),
+    hence \(b^n\) cannot be smaller than \(a\).
+
+    Similarly, suppose that \(b^n>a\).
+    Then there exists \(\epsilon>0\) such that
+    \[
+        \epsilon<\frac{b^n-a}{nb^{n-1}}
+    \]
+    and so
+    \[
+        b^n-(b-\epsilon)^n
+        =\epsilon\sum_{k=0}^{n-1}b^k(b-\epsilon)^{n-1-k}
+        <\epsilon\cdot nb^{n-1}
+        <b^n-a.
+    \]
+    Hence \(a<(b-\epsilon)^n<b^n\).
+    But then for any \(r\in S\),
+    \(r^n<a<(b-\epsilon)^n\) implies that
+    \(b-\epsilon<b\) is also an upper bound of \(S\).
+    This contradicts the choice of \(b\)
+    being a \emph{least} upper bound of \(S\),
+    hence \(b^n\) cannot be greater than \(a\).
+
+    Since both cases where \(b^n<a\) and \(b^n>a\)
+    result in a contradiction,
+    we conclude that \(b^n=a\).
+    That is,
+    there exists a positive \(n\)-th root of \(a>0\).
+    We also note that this root is unique;
+    since \(0<b_1<b_2\) would result in \(b_1^n<b_2^n\).
+    We denote this unique positive number as \(\denote{\sqrt[n]{a}}\).
+\end{example}
+
+Comparing this to the fact that \(\sqrt{2}\) is not a rational number,
+we see that
+the least upper bound property is much stronger
+than the density condition.
+
+It might also be worthwhile to define products of \(\Rmath\),
+and how to measure distances in them.
+
+\begin{definition}
+    \label{def:Rn}
+    For any positive integer \(\Nmath\),
+    we call the Cartesian product
+    \[
+        \underbrace{\Rmath\times\dots\times\Rmath}_{n}
+    \]
+    as the \define{real coordinate space},%
+    \footnote{
+        However, we will seldom use the phrase
+        ``real coordinate space,''
+        mainly because
+        the notation \(\Rmath^n\) is much more concise.
+    }
+    and denote it as \(\Rmath^n\).
+    Note that the elements of \(\Rmath^n\)
+    are \(n\)-tuples in the form of \(\trp*{a_1,\dots,a_n}\),
+    where \(a_i\in\Rmath\) for each \(i=1,\dots,n\).%
+    \footnote{
+        The meaning of a small \textbf t at the top right
+        will be explained later in linear algebra.
+    }
+    These are sometimes called \textdef{points} in \(\Rmath^n\).
+
+    There are two operations for \(\Rmath^n\).
+    Addition takes two elements
+    \((x_1,\dots,x_n)\) and \((y_1,\dots,y_n)\) from \(\Rmath^n\)
+    and returns the value
+    \[
+        (x_1,\dots,x_n)+(y_1,\dots,y_n)
+        =(x_1+y_1,\dots,x_n+y_n).
+    \]
+    Scalar multiplication takes
+    an element \((x_1,\dots,x_n)\) from \(\Rmath^n\)
+    and an element \(a\) from \(\Rmath\)
+    and returns the value
+    \[
+        a(x_1,\dots,x_n)
+        =(ax_1,\dots,ax_n).
+    \]
+    In other words,
+    addition and scalar multiplication are defined \emph{componentwise}.
+\end{definition}
+
+One note:
+some people tend to distinguish notations
+between numbers and \(n\)-tuples (or vectors in the later terminology).
+While it is worthwhile for a variety of cases
+such as linear algebra or numerical analysis,
+I found it quite hard and meaningless
+to practice different handwriting styles
+for different fonts supported by \TeX.
+
+\begin{definition}
+    \label{def:abs}
+    Given an element \(a=\trp*{a_1,\dots,a_n}\in\Rmath^n\),
+    the \define{absolute value} of \(a\)
+    is defined as
+    \[
+        \sqrt{\sum_{k=1}^{n}a_k^2},
+    \]
+    and is denoted as \(\denote{\abs a}[\abs{}]\).
+\end{definition}
+
+The absolute value plays a critical role in analysis
+and is an important motivation for notions of magnitudes.
+It has some important properties listed below.
+
+\begin{observation}
+    \label{obv:absnorm}
+    For any \(\Rmath^n\),
+    the map \(a\in\Rmath^n\mapsto\abs a\) has the following properties:
+    \begin{nlist}
+        \item For any \(x\in\Rmath^n\), \(\abs x\ge 0\);
+        moreover, \(\abs x=0\) if and only if \(x=0\).
+        \item For any \(x\in\Rmath^n\) and \(a\in\Rmath\),
+        \(\abs{ax}=\abs a\abs x\).
+        \item For any \(x,y\in\Rmath^n\),
+        \(\abs{x+y}\le\abs{x}+\abs{y}\).
+    \end{nlist}
+\end{observation}
+\begin{myproof}
+    \begin{nlist}
+        \item Let \(x=(x_1,\dots,x_n)\in\Rmath^n\).
+        Then since \(x_i^2\ge 0\) for each \(i=1,\dots,n\),
+        \(\sum_{i=1}^{n}x_i^2\ge 0\) and so is \(\abs x\).
+
+        To show the latter part,
+        suppose that \(\abs x=0\).
+        Then since \(x_i^2\ge 0\)
+        and \(x_i^2=0\) if and only if \(x_i=0\),
+        we have that \(x_i=0\) for each \(i=1,\dots,n\)
+        and thus \(x=0\).
+        The converse is trivial.
+        
+        \item Let \(x=(x_1,\dots,x_n)\in\Rmath^n\) and \(a\in\Rmath\).
+        Then
+        \[
+            \abs{ax}
+            =\sqrt{\sum_{i=1}^{n}(ax_i)^2}
+            =\sqrt{a^2\sum_{i=1}^{n}x_i^2}
+            =\abs a\abs x.
+        \]
+
+        \item Let \(x=(x_1,\dots,x_n)\), \(y=(y_1,\dots,y_n)\)
+        be in \(\Rmath^n\).
+        Then
+        \begin{align*}
+            (\abs x+\abs y)^2-\abs{x+y}^2
+            &=\abs x^2+2\abs x\abs y+\abs y^2-\abs{x+y}^2 \\
+            &=2\abs x\abs y+\sum_{i=1}^{n}x_i^2+y_i^2-(x_i+y_i)^2
+            =2\abs x\abs y-2\sum_{i=1}^{n}x_iy_i,
+        \end{align*}
+        and it suffices to prove that
+        the last formula is nonnegative.
+        \rightqed
+    \end{nlist}
+\end{myproof}
+
+Since the inequality we want to prove at the last part
+is of great importance,
+we state it separately.
+It even has a name on it --- the Cauchy-Schwarz inequality.
+
+\begin{theorem}[Cauchy-Schwarz Inequality]
+    \label{thm:CSI}
+
+    Let \(x\) and \(y\) be points in \(\Rmath^n\)
+    with \(x=(x_1,\dots,x_n)\) and \(y=(y_1,\dots,y_n)\).
+    Then
+    \[
+        \sum_{i=1}^{n}x_iy_i\le\abs x\abs y.
+    \]
+\end{theorem}
+\begin{myproof}
+    For some \(t\in\Rmath\),
+    consider the formula
+    \[
+        0
+        \le\sum_{i=1}^{n}(x_i+ty_i)^2
+        =\sum_{i=1}^{n}x_i^2
+            +2t\sum_{i=1}^{n}x_iy_i+t^2\sum_{i=1}^{n}y_i^2.
+    \]
+    Since \(x\) and \(y\) are fixed points
+    and the rightmost formula is nonnegative regardless of \(t\),
+    the discriminant
+    \[
+        \dparen*{\sum_{i=1}^{n}x_iy_i}^2
+            -\sum_{i=1}^{n}x_i^2\sum_{i=1}^{n}y_i^2\le 0,
+    \]
+    thus we are done.
+\end{myproof}
+
+There are numerous ways to prove this equality.
+Right now, the proof relies heavily on the fact
+that \(\Rmath\) is an ordered field.
+However, Cauchy-Schwarz inequality and its variations
+will appear constantly in this text;
+after learning new ideas,
+it is noteworthy to look at how the proof changes.
