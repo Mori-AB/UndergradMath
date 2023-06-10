@@ -9,8 +9,16 @@ Here we define closesness by measuring the distance between two points.
 
 Now a question arises:
 how do we define distance?
-As in defining real numbers,
-we first list some properties that are desirable for distances.
+One could define \(\abs{x-y}\) to be the distance in \(\Rmath^n\).
+However, in mathematics we will meet a variety of sets,
+it is quite underwhelming to
+define the distance in each of the sets
+and observe their properties repeatedly.
+This is also critical since
+one can define various notions of distances for a given set.
+
+Rather, as in defining real numbers,
+we first list some properties that seem reasonable.
 Since our intuition is based on \(\Rmath^n\),
 these strongly resemble our everyday notion of distance.
 
@@ -43,7 +51,7 @@ we define the distance to be a (nonnegative) real number.
 
 Hence we have formulated the following definition.
 
-\begin{definition}[Metric (Spaces)]
+\begin{definition}[Metric Spaces]
     \label{def:metric}
     Given a set \(X\),
     the function \(d:X\times X\to\Rmath\) is called
@@ -57,4 +65,125 @@ Hence we have formulated the following definition.
         
         \item For any \(x,y,z\in X\), \(d(x,z)\le d(x,y)+d(y,z)\).
     \end{itemize}
+
+    The set \(X\) equipped with a metric \(d\)
+    is called a \define{metric space},
+    and the elements of \(X\) are called
+    \define[point]{points} in \(X\).
+    If the metric should be denoted explicitly,
+    then one uses the notation \((X,d)\);
+    if not, then the metric function is usually omitted.
 \end{definition}
+
+Of course,
+to omit the metric for a metric space
+we make the following convention.
+\begin{convention}
+    \label{cnv:metric}
+    Unless stated otherwise,
+    the notation \(d(\pholder{},\pholder{})\) denotes a metric.
+    If there are multiple sets,
+    then the notation \(d_X\) denotes a metric
+    for the metric space \(X\).
+    Of course, once used in a proof,
+    it will keep referring to the same metric.
+\end{convention}
+
+We see some examples of metrics.
+\begin{example}
+    \label{exm:metric}
+    There are numerous metrics defined in \(\Rmath^n\):
+    \begin{itemize}
+        \item The function \(d(x,y)=\abs{x-y}\)
+        is a metric on \(\Rmath^n\),
+        as demonstrated in \cref{obv:absnorm}.
+        
+        \item The function \(d:\Rmath^n\times\Rmath^n\to\Rmath\)
+        defined by
+        \[
+            ((x_1,\dots,x_n),(y_1,\dots,y_n))
+            \mapsto\sum_{i=1}^{n}\abs{x_i-y_i}
+        \]
+        is a metric on \(\Rmath^n\),
+        and is called the \define{taxicab distance}.
+
+        \item The function \(d:\Rmath\times\Rmath\to\Rmath\)
+        defined by
+        \[
+            (x,y)\mapsto
+            \abs*{\frac{\abs x}{1+\abs x}-\frac{\abs y}{1+\abs y}}
+        \]
+        is a metric on \(\Rmath\).
+    \end{itemize}
+
+    Other sets can have metrics too:
+    \begin{itemize}
+        \item Given \emph{any} set \(X\),
+        the function \(d:X\times X\to\Rmath\) defined by
+        \[
+            d(x,y)
+            =\begin{cases}
+                1, & (x\neq y) \\
+                0 & (x=y)
+            \end{cases}
+        \]
+        is also a metric;
+        this is called the \define{discrete metric}.
+        In a sense,
+        it only gives the information whether two points are distinct.
+
+        \item Let \(X\) be a metric space equipped with a metric \(d\),
+        and \(A\) be a nonempty subset of \(X\).
+        Then the restriction \(\rest{d}{A\times A}\) defined by
+        \[
+            \rest{d}{A\times A}(a_1,a_2)
+            =d(a_1,a_2),
+            \qquad
+            \forall a_1,a_2\in A
+        \]
+        is a metric in \(A\).
+        The \emph{induced} metric space \((A,\rest{d}{A\times A})\)
+        is called a \textdef{subspace} of the metric space \((X,d)\).
+        When the context is clear,
+        the induced metric \(\rest{d}{A\times A}\) is omitted
+        just like as in \(X\).
+    \end{itemize}
+\end{example}
+
+Now, we name a set consisting of `close' points to a given point.
+
+\begin{definition}[Balls]
+    \label{def:ball}
+    Let \(X\) be a metric space.
+    Given a point \(x\) in \(X\) and \(r>0\),
+    the \define[ball!open]{open ball} with center \(x\) and radius \(r\)
+    is defined as
+    \[
+        \denote{D(x,r)}
+        =\set{p\in X}{d(x,p)<r}.
+    \]
+    Similarly,
+    the \define[ball!closed]{closed ball}
+    with center \(x\) and radius \(r\)
+    is defined as
+    \[
+        \denote{\closure D(x,r)}
+        =\set{p\in X}{d(x,p)\le r}.
+    \]
+    When the context is clear
+    ---
+    for example, when there is only one ball in discussion
+    ---
+    some only write \(D\) or \(\closure D\).
+\end{definition}
+
+Note that closed balls contain all of their ``boundary points'',
+while the open balls contain none of them.
+This difference is represented by the bar notation.
+
+Speaking of boundary points,
+how can we distinguish between the open interval \((0,1)\)
+and the closed interval \([0,1]\)?
+Of course, an answer would be that
+the latter contains \(0\) and \(1\),
+while the former does not.
