@@ -35,6 +35,35 @@ There are several ways on
 calling a set \emph{complete} in real analysis;
 it helps to distinguish them later on.
 
+\begin{definition}[Intervals]
+    \label{def:interval}
+    Given \(a,b\in\Rmath\) with \(a\le b\),
+    the \define[interval!open]{open interval} \((a,b)\)
+    and \define[interval!closed]{closed interval} \([a,b]\)
+    are defined as the sets
+    \[
+        (a,b)=\set{x\in\Rmath}{a<x<b},
+        \qquad
+        [a,b]=\set{x\in\Rmath}{a\le x\le b}.
+    \]
+    Adapting the notation,
+    one can also define sets with notation \((a,b]\) and \([a,b)\);
+    these are called \define[interval!half-open]{half-open intervals}.
+    
+    Also, for unbounded sets, we use the notation
+    \((-\infty,a)\) and \((a,\infty)\) for sets
+    \[
+        (-\infty,a)=\set{x\in\Rmath}{x<a},
+        \qquad
+        (a,\infty)=\set{x\in\Rmath}{a<x}.
+    \]
+    Notations \((-\infty,a]\) and \([a,\infty)\)
+    resemble those of half-open intervals.
+    Note that brackets cannot be used for \(\pm\infty\)
+    since \(\Rmath\) does not contain an infinitely large number,
+    as demonstrated below.
+\end{definition}
+
 We first show a seemingly obvious
 (and indeed clear from the construction)
 fact about the rational numbers:
