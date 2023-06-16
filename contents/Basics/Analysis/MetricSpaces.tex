@@ -187,3 +187,152 @@ and the closed interval \([0,1]\)?
 Of course, an answer would be that
 the latter contains \(0\) and \(1\),
 while the former does not.
+One might notice that
+\(1\) is the least upper bound of both intervals,
+but since it is a defining property of \(\Rmath\),
+it is quite hard to extend that definition directly.
+After all, not all sets we work with are ordered sets.
+
+The key is to work with open balls.
+If \(x\in(0,1)\),
+then by taking \(r=\min\{x,1-x\}/2\)
+we see that \(D(x,r)\subset(0,1)\).
+Also if \(x\notin[0,1]\),
+then by taking \(r=\min\{\abs{-x},\abs{x-1}\}/2\)
+we see that \(D(x,r)\cap(0,1)=\varnothing\).
+Finally, it is clear that for any \(r>0\),
+\(D(x,r)\) has both a point in \((0,1)\) and \((0,1)\compl\).
+
+Hence one can come up with the following definition:
+
+\begin{definition}[Topology of metric spaces]
+    \label{def:mopen}
+    Let \(X\) be a metric space,
+    \(E\subset X\) and \(x\in X\).
+    \begin{nlist}
+        \item If \(x\in E\)
+        and there exists \(r>0\) such that \(D(x,r)\subset E\),
+        then \(x\) is called
+        an \define[point!interior]{interior point} of \(E\).
+        The interior point of \(E\compl\) is called
+        an \define[point!exterior]{exterior point} of \(E\).
+        
+        \item If the open ball \(D(x,r)\) contains points from
+        both \(E\) and \(E\compl\) for any \(r>0\),
+        \(x\) is said to be
+        a \define[point!boundary]{boundary point} of \(E\).
+
+        \item We define the \define{interior} of \(E\)
+        as the set of all interior points of \(E\),
+        and denote as \(\denote{\intr[X]E}\).
+        Although we can use the notation \(\extr[X]E\)
+        for the set of all exterior points of \(E\),
+        but this is redundant;
+        we could just use \(\intr[X]*{X\setminus E}\).
+
+        \item We define the \define{boundary} of \(E\)
+        as the set of all boundary points of \(E\),
+        and denote as \(\denote{\bound[X]E}\).
+
+        \item If \(E=\intr E\),
+        then \(E\) is said to be \define{open} in \(X\).
+    \end{nlist}
+\end{definition}
+
+If the space \(X\) is clear from the context,
+then (as usual) we omit \(X\) and write \(\intr E\) and \(\bound E\).
+
+We also need a different point of view;
+instead of an whole open ball being in \(E\),
+what about an open ball which intersects at \emph{some} point?
+
+\begin{definition}[continues=def:mopen]
+    \label{def:mclosed}
+    Let \(X\) be a metric space,
+    \(E\subset X\) and \(x\in X\).
+    \begin{nlist}
+        \setcounter{nlisti}{5}
+        \item If any open ball \(D(x,r)\) contains an element of \(E\)
+        distinct from \(x\) itself for any \(r>0\),
+        then \(x\) is called
+        a \define[point!limit]{limit point} of \(E\).
+        
+        \item If \(x\in E\) is not a limit point of \(E\),
+        then \(x\) is called
+        an \define[point!isolated]{isolated point} of \(E\).
+
+        \item We denote the set of limit points of \(E\) by \(E'\).
+        
+        \item If \(E\) contains all of its limit points,
+        that is, if \(E'\subset E\),
+        then \(E\) is said to be \define{closed} in \(X\).
+    \end{nlist}
+\end{definition}
+
+The reason for requiring the open ball of a limit point
+to contain an element of \(E\) \emph{distinct} from its center
+is quite straightforward:
+if \(x\in E\) and \(D(x,r)\cap E=\{x\}\) for some \(r>0\),
+then \(x\) does not seem like any limit;
+it is ``isolated.''
+
+Since we have defined `open' and `closed' sets,
+we check if these are compatible with our previous definitions.
+
+\begin{example}
+    \label{exm:opcl}
+    We first note that
+    taking \(m=(a+b)/2\) and \(r=(b-a)/2\),
+    the bounded open interval \((a,b)\)
+    is the open ball \(D(m,r)\) in \(\Rmath\).
+    However, the unbounded open interval \((-\infty,0)\)
+    is clearly not an open ball.
+    \begin{nlist}
+        \item The bounded open interval \((a,b)\) is open in \(\Rmath\).
+        Indeed, given \(x\in(a,b)\),
+        let \(r=\frac{1}{2}\min\{x-a,b-x\}\).
+        Then for any \(y\in(x-r,x+r)\)
+        \[
+            y-a
+            >x-r-a
+            >\frac{x-a}{2}
+            >0,
+            \qquad
+            b-y
+            >b-x-r
+            >\frac{b-x}{2}
+            >0;
+        \]
+        thus we have \((x-r,x+r)\subset(a,b)\).
+        
+        \item Similarly,
+        the open ball \(D(x,r)\) is open in a metric space \(X\).
+        However, the proof is slightly more involved than in (1).
+        Note that
+        our choice of \(r\) in (1) inspects the minimum distance
+        from \(x\) to the boundary points.
+        However,
+        since there are infinitely many boundary points of \(D(x,r)\),
+        taking the minimum might not guarantee a positive number.
+        
+        Nevertheless our geometric intuition says that
+        given a point \(y\in D(x,r)\),
+        the minimum distance from \(y\) to the boundary
+        should be \(r-d(x,y)\).
+        Hence taking \(R=\frac{1}{2}(r-d(x,y))\),
+        for any \(z\in D(y,R)\) we have
+        \[
+            d(x,z)
+            \le d(x,y)+d(y,z)
+            <r+R
+            =\frac{1}{2}(r+d(x,y))
+            <r;
+        \]
+        hence \(D(y,R)\subset D(x,r)\).
+        Thus \(y\) is an interior point of \(D(x,r)\),
+        and since the choice of \(y\) is arbitrary,
+        \(D(x,r)\) is indeed open.
+
+        \item Now we consider the closed ball \(\closure D(x,r)\).
+    \end{nlist}
+\end{example}

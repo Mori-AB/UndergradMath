@@ -4,3 +4,19 @@
     {\LARGE\partname\space\thepart}% define labels
     {0.5\baselineskip}% length for separating label and text
     {\Huge}% code preceding title body
+
+% pagestyle for main matter
+\renewpagestyle{main}[
+    \sffamily
+]{
+    \sethead% set header
+        [\textbf{\thepage}]% even-left
+        []% even-center
+        [\bfseries\chaptername\space\thechapter\space\mdseries\chaptertitle]% even-right
+        {\mdseries\S\thesection\space\space\sectiontitle}% odd-left
+        {}% odd-center
+        {\textbf{\thepage}}% odd-right
+
+    % Other commands
+    \pagenumbering{arabic}
+}
