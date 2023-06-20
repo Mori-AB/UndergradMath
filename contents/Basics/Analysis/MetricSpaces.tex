@@ -255,6 +255,44 @@ Hence one can come up with the following definition:
 If the space \(X\) is clear from the context,
 then (as usual) we omit \(X\) and write \(\intr E\) and \(\bound E\).
 
+\begin{observation}
+    \label{observation:interior}
+    Let \(X\) be a metric space, and \(E\subset X\).
+    Then the interior of \(E\) is open in \(X\).
+    Moreover, it is the largest open subset of \(E\).
+\end{observation}
+Of course, the term ``largest'' means that
+if \(U\subset E\) is open in \(X\), then \(U\subset\intr E\).
+\begin{myproof}
+    To prove the first half, let \(x\in\intr E\).
+    Then since \(x\) is an interior point of \(E\),
+    there exists an open ball \(D(x,r)\) contained in \(E\).
+    It suffices to prove that
+    any point in \(D(x,r)\) is an interior point of \(E\).
+
+    Let \(y\in D(x,r)\).
+    Then by taking \(r'=\frac{1}{2}(r-d(x,y))\),
+    given any \(z\in D(y,r')\) we have
+    \[
+        d(x,z)
+        \le d(x,y)+d(y,z)
+        <d(x,y)+r'
+        =\frac{d(x,y)+r}{2}
+        <r;
+    \]
+    thus \(z\in D(x,r)\) proves that \(D(y,r')\subset D(x,r)\subset E\).
+    Hence we conclude that \(y\) is also an interior point of \(E\).
+
+    To prove the second half,
+    let \(U\subset E\) be open in \(X\)
+    and \(u\in U\).
+    Then there exists an open ball \(D(u,r)\) contained in \(U\),
+    and consequently in \(E\).
+    Therefore \(u\) is an interior point of \(E\)
+    and so \(u\in\intr E\).
+    Hence we conclude that \(U\subset\intr E\).
+\end{myproof}
+
 We also need a different point of view;
 instead of an whole open ball being in \(E\),
 what about an open ball which intersects at \emph{some} point?
@@ -477,7 +515,99 @@ between the notions of openness and closedness.
     we conclude that \(E\) is closed.
 \end{myproof}
 
-Since we have defined some properties of a set,
+Note that we have not yet defined
+the analogue of the interior of a set for closedness;
+the formulation makes more sense
+only after we have proved \cref{prop:opclcompl}.
+Since closed sets are precisely the complements of open sets,
+rather than finding the largest closed subset in \(E\subset X\),
+we wish to find the \emph{smallest} closed set which contains \(E\).
+
+\begin{definition}
+    \label{def:closure}
+    Let \(X\) be a metric space and \(E\subset X\).
+    Then the \define{closure} of \(E\)
+    is the set \(E\cup E'\), and is denoted as \(\denote{\closure E}\).
+\end{definition}
+
+Note that \(E\) is closed if and only if \(E=\closure E\),
+which is the analogue of \cref{def:mopen}(5).
+
+\begin{observation}
+    \label{obv:closure}
+    Let \(X\) be a metric space and \(E\subset X\).
+    Then the closure \(\closure E\) is closed in \(X\).
+    Moreover, \(\closure E\) is the smallest closed set in \(X\)
+    which contains \(E\).
+\end{observation}
+Of course, the term ``smallest'' means that
+if \(U\supset E\) is closed in \(X\), then \(\closure E\subset U\).
+\begin{sketch}
+    We could prove that
+    any limit point of \(\closure E\) is indeed in \(E\).
+    But since \(\closure E\) is defined as a union of two sets,
+    we should divide the problem by cases and tackle them separately.
+    While it is still a valid proof,
+    proving that \(X\setminus\closure E\) is open in \(X\)
+    seems more simple.
+\end{sketch}
+\begin{myproof}
+    To prove the first half,
+    let \(x\in X\setminus\closure E\).
+    Then since \(x\) is not a limit point of \(E\),
+    there exists an open ball \(D(x,r)\) such that
+    \(D(x,r)\cap E\) contains at most one element of \(E\)
+    ---
+    more specifically, \(D(x,r)\cap E=\{x\}\) if \(x\in E\),
+    or else \(D(x,r)\cap E\) is empty.
+    But since \(x\notin E\),
+    we obtain the latter and thus \(X\setminus\closure E\) is open.
+    Hence we conclude that \(\closure E\) is closed in \(X\).
+
+    Now let \(V\supset E\) be open in \(X\).
+    Then since \(V\) contains all the limit points of \(E\),
+    \(E'\subset V\) and thus \(\closure E=E\cup E'\subset V\).
+\end{myproof}
+
+This observation could be supported informally as the following:
+Given a set \(E\subset X\),
+\(E\) may be missing its limit points to be closed in \(X\)
+---
+thus ``completing'' \(E\) by adding the limit points
+may make \(E\) a closed set.
+Just one minor detail,
+are the limit points of \(E'\) are still limit points of \(E\)?
+
+\begin{example}
+    \label{exm:limptclosed}
+    Let \(X\) be a metric space and \(E\subset X\).
+    Let \(x\) be a limit point of \(E'\) and fix \(r>0\).
+    Then there exists \(y\in E'\) distinct from \(x\) with \(d(x,y)<r\).
+    Now by taking \(r'=\frac{1}{2}(r-d(x,y))\),
+    there exists \(z\in E\) distinct from \(y\) with \(d(y,z)<r'\).
+    Then
+    \[
+        d(x,z)
+        \le d(x,y)+d(y,z)
+        <d(x,y)+r'
+        =\frac{r+d(x,y)}{2}
+        <r
+    \]
+    indicates that \(z\in D(x,r)\).
+    Also, since \(d(x,y)>0\),
+    \[
+        d(y,z)
+        =r'
+        =\frac{1}{2}(r-d(x,y))
+        <\frac{r}{2}
+        <r
+        =d(x,y)
+    \]
+    proves that \(x\neq z\)
+    and thus \(x\) is indeed a limit point of \(E\).
+\end{example}
+
+Now since we have defined some properties of a set,
 it is only natural to check
 if these are preserved under set operations.
 
