@@ -153,15 +153,22 @@
 \declaretheoremstyle[
     headfont=\sffamily\bfseries,
     bodyfont=\normalfont,
-    qed=\qedsymbol,
     headpunct={\::}
-    ]{proof}
+    ]{sketchproof}
 
 \declaretheorem[
-    style=proof,
+    style=sketchproof,
     name=Sketch of Proof,
     unnumbered
 ]{sketch}
+
+\declaretheoremstyle[
+    headfont=\sffamily\bfseries,
+    bodyfont=\normalfont,
+    qed=\qedsymbol,
+    headpunct={\::}
+    ]{proof}
+    
 \declaretheorem[
     style=proof,
     name=Proof,
