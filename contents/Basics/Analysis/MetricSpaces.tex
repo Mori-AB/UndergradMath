@@ -688,28 +688,46 @@ thus failing to form an open ball.
 This implies that finiteness is a very important concept in topology,
 and is stated later.
 
-Before we move on to more complex concepts,
-we state one more definition;
-this is somewhat related to the subspace in \cref{exm:metric}.
+% Before we move on to more complex concepts,
+% we state one more definition;
+% this is somewhat related to the subspace in \cref{exm:metric}.
 
-\begin{definition}
-    \label{def:reltop}
-    Let \(X\) be a metric space,
-    and \(E\subset X\).
-    Then a subset \(U\) of \(E\) is said to be
-    \define[open!relative]{relatively open in \(E\)}
-    or simply \textdef{open in \(E\)}
-    if there exists an open subset \(O\) of \(X\) such that
-    \(U=E\cap O\).
+% \begin{definition}
+%     \label{def:reltop}
+%     Let \(X\) be a metric space,
+%     and \(E\subset X\).
+%     Then a subset \(U\) of \(E\) is said to be
+%     \define[open!relative]{relatively open in \(E\)}
+%     or simply \textdef{open in \(E\)}
+%     if there exists an open subset \(O\) of \(X\) such that
+%     \(U=E\cap O\).
 
-    Similarly, a subset \(V\) of \(E\) is said to be
-    \define[closed!relative]{relatively closed in \(E\)}
-    or simply \textdef{closed in \(E\)}
-    if there exists a closed subset \(C\) of \(X\) such that
-    \(V=E\cap C\).
-\end{definition}
+%     Similarly, a subset \(V\) of \(E\) is said to be
+%     \define[closed!relative]{relatively closed in \(E\)}
+%     or simply \textdef{closed in \(E\)}
+%     if there exists a closed subset \(C\) of \(X\) such that
+%     \(V=E\cap C\).
+% \end{definition}
 
-By applying the same procedure as in \cref{prop:opclcompl},
-we observe that
-if \(S\subset E\) is open in \(E\),
-then \(E\setminus S\) is closed in \(E\).
+% One trivial example is that
+% the half-open interval \((0,1]\) is not open in \(\Rmath\),
+% but is open in the closed interval \([0,1]\).
+
+% By applying the same procedure as in \cref{prop:opclcompl},
+% we observe that
+% if \(S\subset E\) is open in \(E\),
+% then \(E\setminus S\) is closed in \(E\).
+
+% Now we define a notion for ``compactness.''
+% The history of the notion for compactness is not that easy
+% and the reasoning behind the terminology is quite vague,
+% as stated in \cite{cpt-hist}.
+
+% \begin{restatable}{definition}{limptcpt}
+%     \label{def:limptcpt}
+%     Let \(X\) be a metric space.
+%     If any infinite subset \(E\) of \(X\) has a limit point in \(X\),
+%     then \(X\) is said
+%     to be \define[compact!limit-point]{limit-point compact},
+%     or to have the \define{Bolzano-Weierstrass property}.
+% \end{restatable}
