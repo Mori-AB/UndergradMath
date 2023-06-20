@@ -346,6 +346,240 @@ we check if these are compatible with our previous definitions.
         and since the choice of \(y\) is arbitrary,
         \(D(x,r)\) is indeed open.
 
-        \item Now we consider the closed ball \(\closure D(x,r)\).
+        \item Now we consider the closed ball \(\closure D(x,r)\)
+        in a metric space \(X\).
+        Suppose that \(p\in X\) is a limit point of \(\closure D(x,r)\).
+        Then for any \(r'>0\),
+        the open ball \(D(p,r')\) must contain a point \(q\)
+        which is distinct from \(p\) and is also in \(\closure D(x,r)\).
+        Thus
+        \[
+            d(x,p)
+            \le d(x,q)+d(q,p)
+            \le r+r';
+        \]
+        and since the choice of \(r'\) is arbitrary,
+        we conclude that \(d(x,p)\le r\).
+        But then \(p\in\closure D(x,r)\);
+        thus \(\closure D(x,r)\) is indeed a closed set.
+
+        \item Note that
+        the finite half-open intervals in \(\Rmath\) are
+        neither open nor closed.
+        However, the infinite interval \((-\infty,a]\) is indeed
+        closed in \(\Rmath\).
     \end{nlist}
 \end{example}
+
+Of course,
+there are more obvious results than the above.
+
+\begin{example}
+    \label{exm:opcl2}
+    Let \(X\) be a metric space.
+    \begin{nlist}
+        \item Consider the set \(X\) itself.
+        It is clearly open in \(X\),
+        since \(D(x,r)\subset X\) for any \(x\in X\).
+        Also, since \(X\) contains every point in \(X\),
+        any limit point of \(X\) is also in \(X\);
+        thus \(X\) is also closed.
+
+        \item Now consider the empty set.
+        Since it contains no elements,
+        the condition for being open is vacuously satisfied;
+        thus the empty set is open.
+        Similarly, the empty set has no limit points;
+        then the condition for being closed is also vacuously satisfied
+        and thus the empty set is closed.
+
+        \item Let \(X=\Qmath\) be the subspace
+        of the Euclidean space \(\Rmath\)
+        (that is, let \(\Qmath\) be equipped with the usual metric),
+        and consider the set \(S=\set{r\in\Qmath}{r<\sqrt 2}\).
+        Then since \(\Qmath\) is dense in \(\Rmath\),
+        given any \(s\in S\) we have \(D(s,r)\subset S\) by taking
+        \[
+            0<r<\sqrt 2-s.
+        \]
+        Note that \(D(s,r)=(-\infty,\sqrt 2)\cap\Qmath\),
+        since the elements of \(D(s,r)\) must be in \(X=\Qmath\).
+
+        \item Let \(X\) and \(S\) be as in (3),
+        and suppose that \(x\in X\) is a limit point of \(S\).
+        If \(x>\sqrt{2}\),
+        then by taking
+        \[
+            r=\frac{x-\sqrt{2}}{2}
+        \]
+        we observe that \(D(x,r)\cap S=\varnothing\);
+        which contradicts the choice of \(x\)
+        being a limit point of \(S\).
+        Thus \(x<\sqrt 2\), and we have \(x\in S\).
+        Therefore \(S\) is indeed closed in \(X\).
+    \end{nlist}
+\end{example}
+
+The terms ``open'' and ``closed'' are opposite in our usual language,
+and seem to give the impression that
+if a set is not closed, then it is open, and vice versa.
+This is clearly not the case:
+there are sets that are neither open nor closed as in \cref{exm:opcl},
+and sets that are both open and closed as in \cref{exm:opcl2}.
+
+One of the reasons for such is that
+the term ``closed'' has various meanings depending on the text.
+In most cases,
+a set \(E\subset X\) is said to be closed
+if the result of a certain procedure in \(E\) ends up inside \(E\).
+For example, in our definition of closedness,
+the procedure is interpreted as following up a sequence in \(E\).
+If it ``converges,''
+--- although we have never defined convergence yet ---
+then inspecting sequences in \(E\) will not yield a point outside \(E\);
+thus \(E\) is closed ``under convergence.''
+
+Nevertheless, there is an important relation
+between the notions of openness and closedness.
+
+\begin{proposition}
+    \label{prop:opclcompl}
+    Let \(X\) be a metric space, and \(E\subset X\).
+    Then \(E\) is closed if and only if \(X\setminus E\) is open.
+\end{proposition}
+\begin{sketch}
+    If one visualizes open sets as sets without its boundary
+    and closed sets as sets having its full boundary,
+    then a simple diagram could show the result.
+    All we need to do is
+    to formally write them down with the definitions we have.
+\end{sketch}
+\begin{myproof}
+    First, suppose that \(E\) is closed in \(X\),
+    and let \(x\in X\setminus E\).
+    If there is no such \(r>0\) with \(D(x,r)\subset X\setminus E\),
+    then \(D(x,r)\) contains some point of \(E\) for each \(r>0\);
+    since \(x\notin E\), \(x\) is indeed a limit point of \(E\).
+    This contradicts the closedness of \(E\),
+    and thus \(x\) is indeed an interior point of \(X\setminus E\).
+    Since the choice of \(x\) was arbitrary,
+    we conclude that \(X\setminus E\) is open.
+
+    Conversely, suppose that \(X\setminus E\) is open,
+    and let \(x\in X\) be a limit point of \(E\).
+    If \(x\notin E\),
+    then by the openness of \(E\) there exists an open ball such that
+    \(D(x,r)\subset X\setminus E\);
+    that is, \(D(x,r)\cap E=\varnothing\).
+    This contradicts the choice of \(x\) being a limit point of \(E\),
+    and thus \(x\in E\).
+    Since the choice of \(x\) is arbitrary,
+    we conclude that \(E\) is closed.
+\end{myproof}
+
+Since we have defined some properties of a set,
+it is only natural to check
+if these are preserved under set operations.
+
+\begin{observation}
+    \label{obv:opensetop}
+    Let \(X\) be a metric space,
+    and \(\mathcal E=\indexset{E_i}{i\in I}{}\),
+    \(\mathcal F=\indexset{F_i}{i\in I}{}\)
+    be some collections of open and closed subsets of \(X\),
+    respectively.
+    \begin{nlist}
+        \item For any collection \(\mathcal E\),
+        the union \(\bigcup\mathcal E\) is open in \(X\).
+        
+        \item For any collection \(\mathcal F\)
+        the intersection \(\bigcap\mathcal F\) is closed in \(X\).
+        
+        \item For any finite collection \(\mathcal E\),
+        the intersection \(\bigcap\mathcal E\) is open in \(X\).
+
+        \item For any finite collecttion \(\mathcal F\),
+        the union \(\bigcup\mathcal F\) is closed in \(X\).
+    \end{nlist}
+\end{observation}
+\begin{myproof}
+    \begin{nlist}
+        \item Let \(x\in\bigcup\mathcal E\).
+        Then \(x\in E_i\) for some \(i\in I\);
+        and since \(E_i\) is open in \(X\),
+        there exists \(r>0\) such that
+        \(D(x,r)\subset E_i\subset\mathcal E\).
+        Thus \(\mathcal E\) is open.
+
+        \item For each \(F_i\in\mathcal F\),
+        let \(E_i=X\setminus F_i\) be open sets in \(X\).
+        Then by (1) \(\bigcup_{i\in I}E_i\) is open in \(X\);
+        thus the complement
+        \[
+            X\setminus\bigcup_{i\in I}E_i
+            =\bigcap_{i\in I}(X\setminus E_i)
+            =\bigcap_{i\in I}F_i
+            =\bigcap\mathcal F
+        \]
+        is closed in \(X\).
+
+        \item Let \(x\in\bigcap\mathcal E\),
+        and \(\mathcal E=\{E_1,\dots,E_n\}\).
+        Then since \(x\in E_i\) for each \(1\le i\le n\),
+        there exist positive numbers \(r_1,\dots,r_k\) such that
+        \(D(x,r_i)\subset E_i\) for each \(1\le i\le n\).
+        Now taking \(r=\min\{r_1,\dots,r_n\}\) we have
+        \(D(x,r)\subset E_i\) for each \(1\le i\le n\),
+        and thus \(D(x,r)\subset\bigcap\mathcal E\).
+
+        \item Let \(x\in\bigcup\mathcal F\),
+        and denote the elements of \(\mathcal F\) as
+        \(F_1,\dots,F_n\).
+        Then since each \(X\setminus F_i\) are open in \(X\),
+        their finite intersection \(\bigcap_{i=1}^n(X\setminus F_i)\)
+        is open in \(X\) by (3).
+        Thus the complement
+        \[
+            X\setminus\bigcap_{i=1}^n(X\setminus F_i)
+            =\bigcup_{i=1}^n(X\setminus(X\setminus F_i))
+            =\bigcup_{i=1}^nF_i
+            =\bigcup\mathcal F
+        \]
+        is closed in \(X\).
+        \rightqed
+    \end{nlist}
+\end{myproof}
+
+The finiteness condition of (3) (and (4)) are required
+because we take the minimum of radii \(r_i\) of the proof.
+If the index set \(I\ni i\) were infinite,
+then the minimum might not exist while the infinum may reach zero;
+thus failing to form an open ball.
+This implies that finiteness is a very important concept in topology,
+and is stated later.
+
+Before we move on to more complex concepts,
+we state one more definition;
+this is somewhat related to the subspace in \cref{exm:metric}.
+
+\begin{definition}
+    \label{def:reltop}
+    Let \(X\) be a metric space,
+    and \(E\subset X\).
+    Then a subset \(U\) of \(E\) is said to be
+    \define[open!relative]{relatively open in \(E\)}
+    or simply \textdef{open in \(E\)}
+    if there exists an open subset \(O\) of \(X\) such that
+    \(U=E\cap O\).
+
+    Similarly, a subset \(V\) of \(E\) is said to be
+    \define[closed!relative]{relatively closed in \(E\)}
+    or simply \textdef{closed in \(E\)}
+    if there exists a closed subset \(C\) of \(X\) such that
+    \(V=E\cap C\).
+\end{definition}
+
+By applying the same procedure as in \cref{prop:opclcompl},
+we observe that
+if \(S\subset E\) is open in \(E\),
+then \(E\setminus S\) is closed in \(E\).
