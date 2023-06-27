@@ -1,2 +1,285 @@
 \setsection{Sequences in Metric Spaces}
 \label{sec:mseq}
+
+Normally, many textbooks move on to
+notions of compactness and connectedness
+after defining open sets.
+However, it is also worthwhile to inspect sequences,
+since they play a crucial role in metric spaces.
+
+We first recall the definition of a sequence from
+\cref{chap:numbers}.
+
+% TODO: insert definition of sequence
+
+Now since we have the notion of distance,
+we can finally define what it means for a sequence to converge.
+
+\begin{definition}
+    \label{def:convseq}
+    Let \(X\) be a metric space,
+    and \(\seq{x_n}{n}\) be a sequence in \(X\).
+    Then the sequence \(\seq{a_n}{n}\) is said to
+    \define[sequence!convergent]{converge to \(x\in X\)}
+    if there exists \(x\in X\) such that
+    for any \(\epsilon>0\), there exists \(N>0\) such that
+    \(d(x_n,x)<\epsilon\) for any \(n>N\).
+    We denote as
+    \[
+        \denote{\lim_{n\to\infty}}x_n=x,
+    \]
+    or \(x_n\to x\) as \(n\to\infty\) in the middle of text.
+    The latter is read as
+    ``\(x_n\) converges to \(x\)
+    as \(n\) tends to (or approaches) infinity,''
+    while \(x\) is called
+    a \define[sequence!limit]{limit} of \(\seq{a_n}{n}\).
+    
+    On the contrary,
+    if \(\seq{x_n}{n}\) does not converge to any \(x\in X\),
+    then it is said to
+    \define[sequence!divergent]{diverge}.
+\end{definition}
+
+It is also common to call a sequence \(\seq{a_n}{n}\)
+\textdef{convergent} or \textdef{divergent}.
+
+According to \textcite{Bre07},
+it was Archimedes who introduced the notion above
+to describe convergence.
+This was used when he was describing the method of exhaustion,
+and needed to argue that
+the sum of the area of triangles approaches the area of a parabola.
+The same idea will arise later when we discuss integration.
+
+Note that the definition is written ``backwards'' in some sense.
+Normally, one would imagine that to determine a limit of a sequence,
+one would inspect the value of its terms while increasing the index.
+However, the formal definition of a limit is to
+first fix the candidate,
+and then showing that every term is close enough to that candidate
+for sufficiently large indices.
+For example, consider the sequence \(\seq{a_n=1/n}{n}\).
+The former approach first watches the values \(1,1/2,1/3,\dots\)
+and states that it gets arbitrarily close to zero.
+The latter approach first makes zero as a candidate of a limit,
+and then shows that the terms are close to zero except for finite terms.
+However, it is noteworthy that the former approach is still relevant,
+since we need to determine the candidate for our limit.
+
+Now a very natural question arises:
+if a sequence converges to a limit, is it unique?
+
+\begin{observation}
+    \label{obv:uniqlim}
+    Let \(X\) be a metric space
+    and \(\seq{x_n}{n}\) be a sequence in \(X\).
+    If \(x\) and \(x'\) are limits of the sequence \(\seq{x_n}{n}\),
+    then \(x=x'\).
+\end{observation}
+\begin{myproof}
+    Let \(x\) and \(x'\) be limits of \(\seq{x_n}{n}\),
+    and fix \(\epsilon>0\).
+    Then there exist \(N,N'>0\) such that
+    \(d(x_n,x)<\epsilon/2\) for all \(n>N\)
+    and \(d(x_n,x')<\epsilon/2\) for all \(n>N'\).
+    Therefore
+    \[
+        d(x,x')
+        \le d(x,x_n)+d(x',x_n)
+        <\frac{\epsilon}{2}+\frac{\epsilon}{2}
+        =\epsilon
+    \]
+    for any \(n>\max\{N,N'\}\).
+    This must hold for any \(\epsilon>0\);
+    thus \(d(x,x')=0\) and so \(x=x'\).
+\end{myproof}
+
+Of course, there are other important properties of convergent sequences.
+
+\begin{observation}
+    \label{obv:convseq}
+    Let \(X\) be a metric space and \(x\in X\).
+    \begin{nlist}
+        \item The sequence \(\seq*{x_n}{n}\) converges to \(x\)
+        if and only if every open ball centered at \(x\)
+        contains all but finitely many points of \(\seq*{x_n}{n}\).
+
+        \item If a sequence \(\seq*{x_n}{n}\) converges,
+        then it is bounded.
+        That is,
+        there exists an \(R>0\) such that
+        \(d(x_m,x_n)<R\) for any \(m,n\).
+
+        \item If a sequence \(\seq*{x_n}{n}\) converges to \(x\),
+        then \(x\) is a limit point
+        of the set \(\set*{x_n}{n\in \Nmath}\).
+    \end{nlist}
+\end{observation}
+\begin{myproof}
+    \begin{nlist}
+        \item Suppose that \(\seq*{x_n}{n}\) converges to \(x\).
+        Then given any open ball \(D(x,R)\) for \(R>0\),
+        there exists \(N>0\) such that
+        \(n>N\) implies \(d(x,x_n)<R\); that is, \(x_n\in D(x,R)\).
+
+        Conversely, suppose that every open ball centered at \(x\)
+        contains all but finitely many points of \(\seq*{x_n}{n}\).
+        Then given any \(\epsilon>0\),
+        since the open ball \(D(x,\epsilon)\) must contain
+        all but finitely many terms of the sequence \(\seq*{x_n}{n}\);
+        thus there must exist \(N>0\) such that
+        \(x_n\in D(x,\epsilon)\) holds for all \(n>N\).
+
+        \item Suppose that
+        the sequence \(\seq*{x_n}{n}\) converges to \(x\).
+        Then there exists \(N>0\) such that
+        \(d(x_n,x)<1\) for all \(n>N\);
+        thus by taking
+        \[
+            R
+            =\max\{
+                d(x_1,x_2),d(x_1,x_3),\dots,d(x_{N-1},x_N),
+                d(x_1,x),d(x_2,x),\dots,d(x_N,x)
+            \}+1
+        \]
+        we have that \(d(x_m,x_n)<R\) for any \(m,n\).
+
+        \item Suppose that
+        the sequence \(\seq*{x_n}{n}\) converges to \(x\),
+        and let \(S=\set*{x_n}{n\in\Nmath}\).
+        Then given any \(\epsilon>0\),
+        the convergence of \(\seq*{x_n}{n}\) implies that
+        the open ball \(D(x,\epsilon)\) contains all but finite \(x_n\);
+        thus there must exist a point in \(S\) distinct from \(x\).
+        Therefore \(x\) is indeed a limit point of \(S\).
+        \rightqed
+    \end{nlist}
+\end{myproof}
+
+Item (3) of the above observation shows the similarity
+between the terms `limits' and `limit points.'
+We have seen that
+the limit of a sequence is a limit point of the image of that sequence.
+Sadly, by observing the sequence \(\seq*{a_n=(-1)^n}{n}\) in \(\Rmath\)
+we notice that the converse is not necessarily true.
+Even though \(1\) and \(-1\) are limit points
+of the image of \(\seq*{a_n}{n}\),
+the sequence \(\seq*{a_n}{n}\) clearly diverges.
+
+However, we still can find some terms that converge to them.
+Can we generalize this to metric spaces?
+To do so we first need a notion of picking some terms of a sequence.
+
+\begin{definition}
+    \label{def:subseq}
+    Let \(n_1,n_2,n_3,\dots\) be natural numbers
+    of (strictly) increasing order.
+    Then given a sequence \(\seq*{x_n}{n}\),
+    the new sequence \(\seq*{x_{n_k}}{k}\) is called
+    a \define[sequence!sub-]{subsequence} of \(\seq*{x_n}{n}\).
+\end{definition}
+
+\begin{proposition}
+    \label{prop:limptsubseq}
+    Let \(\seq*{x_n}{n}\) be a sequence in a metric space \(X\),
+    and \(x\) be a limit point of the set \(\set*{x_n}{n\in\Nmath}\).
+    Then there exists a subsequence of \(\seq*{x_n}{n}\)
+    which converges to \(x\).
+\end{proposition}
+\begin{myproof}
+    Since \(x\) is a limit point of the set \(\set*{x_n}{n\in\Nmath}\)
+    (which we denote by \(E\)),
+    given any \(k\in\Nmath\)
+    there must exist some point \(x_{n_k}\in E\) with
+    \(n_k>n_{k-1}\) and \(d(x,x_{n_k})<1/k\).
+    We claim that the subsequence \(\seq*{x_{n_k}}{k}\)
+    converges to \(x\).
+    
+    Now given any \(\epsilon>0\),
+    there exists \(K\in\Nmath\) such that \(d(x,x_{n_K})<1/K<\epsilon\);
+    thus for any \(k>K\) we have
+    \[
+        d(x_{n_k},x)
+        <\frac{1}{k}
+        <\frac{1}{K}
+        <\epsilon,
+    \]
+    and we conclude that
+    \(\seq*{x_{n_k}}{k}\) indeed converges to \(x\).
+\end{myproof}
+
+% If we depict a converging sequence in our minds,
+% we note that the terms of the sequence gets closer to each other.
+% This family of sequences play an important role
+% in the study of analysis,
+% and thus is named after Cauchy.
+% We have already seen this sequence in \cref{chap:numbers}.
+
+% % TODO : restate definition of cauchy sequence
+
+% Note that
+% when working with Cauchy sequences,
+% we only need to inspect the \emph{terms} of the sequence,
+% whereas when working with convergent sequences,
+% we need to inspect the limit, which is an extra value.
+% Recalling the definition of a Cauchy sequence,
+% we restate the above discussion as follows.
+
+% \begin{observation}
+%     \label{obv:convcauchy}
+%     Let \(\seq{x_n}{n}\) be a convergent sequence
+%     in a metric space \(X\).
+%     Then \(\seq{x_n}{n}\) is a Cauchy sequence.
+% \end{observation}
+% \begin{sketch}
+%     As above,
+%     the sequence \(\seq{x_n}{n}\) gets closer to its limit.
+%     Hence the distance of the terms tends to zero.
+% \end{sketch}
+% \begin{myproof}
+%     Let \(x\) be the limit of \(\seq{x_n}{n}\),
+%     and fix \(\epsilon>0\).
+%     Since \(\seq{x_n}{n}\) converges to \(x\),
+%     there exists \(N\) such that
+%     \(n>N\) implies \(d(x_n,x)<\epsilon/2\).
+%     Therefore for any \(m>n>N\),
+%     \[
+%         d(x_n,x_m)
+%         \le d(x_n,x)+d(x,x_m)
+%         <\frac{\epsilon}{2}+\frac{\epsilon}{2}
+%         =\epsilon
+%     \]
+%     and thus \(\seq{x_n}{n}\) is indeed a Cauchy sequence.
+% \end{myproof}
+
+% Now we hope the converse to be true.
+% That is, we will observe
+% whether every Cauchy sequence converges to some point.
+% Sadly, this is not true.
+% Take, for example,
+% the sequence
+% \[
+%     1, \qquad
+%     1.4, \qquad
+%     1.41, \qquad
+%     1.414, \qquad
+%     1.4142, \qquad
+%     1.41428, \qquad
+%     \cdots
+% \]
+% formed by the decimal expression of \(\sqrt 2\).
+% This is a sequence in \(\Qmath\),
+% but the result \(\sqrt 2\) is not in \(\Qmath\).
+
+% Since we know that the converse of \cref{obv:convcauchy} is not true,
+% the next question would be:
+% What conditions do we need to make every Cauchy sequence converge?
+% We first name the condition that we want.
+
+% \begin{definition}
+%     \label{def:complete}
+%     We call a metric space \(X\)
+%     \define[metric space!complete]{complete}
+%     if every Cauchy sequence in \(X\) converges.
+% \end{definition}
