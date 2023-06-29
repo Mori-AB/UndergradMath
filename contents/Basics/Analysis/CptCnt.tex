@@ -4,13 +4,41 @@
 Now we define a notion for ``compactness.''
 The history of the notion for compactness is not that easy
 and the reasoning behind the terminology is quite vague,
-as stated in \cite{cpt-hist}.
+as stated by \textcite{cpt-hist}.
+However, it is said that
+there are mainly three notions of compactness.
 
-\begin{restatable}{definition}{limptcpt}
+The first definition of compactness
+comes from our early definitions of a limit point.
+
+\begin{definition}
     \label{def:limptcpt}
     Let \(X\) be a metric space.
     If any infinite subset \(E\) of \(X\) has a limit point in \(X\),
     then \(X\) is said
-    to be \define[compact!limit-point]{limit-point compact},
+    to be \define[compactness!limit-point]{limit-point compact},
     or to have the \define{Bolzano-Weierstrass property}.
-\end{restatable}
+\end{definition}
+
+Thus one cannot call \(\Rmath\) limit-point compact,
+since the infinite subset \(\Nmath\) does not have a limit point.
+Also, one cannot call the open interval \((a,b)\) limit-point compact,
+since the set
+\[
+    E
+    =\set[\bigg]{a+\frac{b-a}{n}}{n\in\Nmath}
+\]
+does not have a limit point in \((a,b)\).
+
+\begin{definition}
+    \label{def:seqcpt}
+    Let \(X\) be a metric space.
+    If any sequence in \(X\) has a convergent subsequence,
+    then \(X\) is said
+    to be \define[compactness!sequential]{sequentially compact}.
+\end{definition}
+
+\begin{definition}
+    \label{def:mcpt}
+    Let \(X\) be a metric space.
+\end{definition}
