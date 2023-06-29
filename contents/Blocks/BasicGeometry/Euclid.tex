@@ -1,0 +1,112 @@
+\setsection{Euclidean Geometry}
+\label{sec:euclidgeo}
+
+Lets talk about some mathematical history.
+There are many groundbreaking works inside mathematics.
+I personally argue that
+one of the most important incidents of mathematics
+was when non-Euclidean geometry was founded in the 19th century.
+Mathematicians were freed from the plane that
+they have lived on for thousands of years,
+and finally started to study the space itself,
+rather than shapes lying on that space.
+
+But in order to appreciate the beauty of non-Euclidean geometry,
+one must first take a look at what Euclidean geoemtry means.
+Euclid decided to have five postulates and some definitions
+to describe the geometry he knew.
+The definitions are not precise yet;
+we just look at the postulates themselves.
+
+\begin{definition}[Euclid's Postulates]
+    \label{def:euclidpos}
+    The postulates of Euclidean geometry are the following:
+    \begin{nlist}
+        \item Given any two points,
+        there uniquely exists a line connecting the two points.
+        
+        \item Given any two segments \(AB\) and \(CD\),
+        there exists a point \(E\) such that
+        \(B\) is in between \(A\) and \(E\)
+        and the two segments \(EB\) and \(CD\) have the same length.
+        
+        \item Given any two points \(O\) and \(A\),
+        there exists a circle centered at \(O\) with radius \(OA\).
+        
+        \item Every right angle is equal to one another.
+        
+        \item If a straight line falls on two straight lines
+        making two interior angles on the same side
+        which are less than two right angles,
+        then the two straight lines meet on that side of the plane.
+    \end{nlist}
+\end{definition}
+
+One can almost immediately see the difference in the last postulate.
+For example, lets say that
+we are to draw objects with a ruler and a compass
+in our everyday lives.
+Then it is quite clear that the first postulate can be achieved;
+just lay the ruler on both points and draw a line.
+Similarly, the second postulate can be achieved with our everyday ruler,
+since we can measure and copy the distance.
+The third postulate is achieved by using a compass,
+and the fourth is achieved
+by defining the angle of a straight line to be \(180^\circ\).
+Then by the definition of right angles,
+every right angle has a size of \(90^\circ\) and we are done.
+
+However, the last postulate of \cref{def:euclidpos},
+called the \define{parallel postulate},
+just seems less trivial.
+How can one guarantee that the two straight lines meet?
+Naturally, many proofs were attempted throughout history.
+It is now known that
+the parallel postulate is independent of the rest of the postulates.
+
+But after centuries, it turned out that
+Euclidean Geometry was flawed even without the parallel postulate.
+For example,
+consider the following proof of constructing an equilateral triangle
+which has the given segment as one of its sides.
+
+\begin{example}
+    \label{exm:equitri}
+    Let the line segment \(AB\) be given.
+    Applying the third postulate twice
+    we obtain two circles;
+    one centered at \(A\) with radius \(AB\),
+    and the other centered at \(B\) with radius \(BA\).
+    Then the two circles meet at a point;
+    denote it by \(C\).
+    
+    Now the segments \(AC\) and \(AB\) have equal length
+    since they are both radii of a circle.
+    Also, the segments \(AB\) and \(BC\) have equal length
+    since they are both radii of a circle.
+    Thus the three segments \(AC\), \(AB\) and \(BC\) have equal length
+    and thus the triangle \(ABC\) is an equilateral triangle.
+\end{example}
+
+One might call this proof flawless,
+but there is one small minor detail:
+how do you guarantee that the two circles meet at some point?
+Suppose that the space under discussion were \(\Zmath^2\)
+with \(A(0,0)\) and \(B(1,0)\).
+Then the circles centered each at \(A\) and \(B\) with radius 1
+clearly do not meet at any point in \(\Zmath^2\).
+Is this nitpicking?
+Actually, it's not.
+Since we did not define what plane should the discussion be,
+this is still a valid counterexample.
+
+After this, some mathematicians established new axioms
+to refine the classical Euclidean geometry.
+One of the most popular axioms are from
+\textcite{Hil05},
+who refined the explicit postulates and implicit axioms by Euclid
+as five groups of axioms.
+We wish to follow Hilbert's axioms
+and see how it improves Euclid's geometry.
+Only after we have established Euclidean geometry
+we are able to see examples of non-Euclidean geometry.
