@@ -29,6 +29,16 @@ since the set
     =\set[\bigg]{a+\frac{b-a}{n}}{n\in\Nmath}
 \]
 does not have a limit point in \((a,b)\).
+This may be called compact in a sense,
+since \(\Rmath\) and \(E\) cannot be compact.
+
+But by the aid of \cref{prop:limptsubseq},
+one can consider another definition of compactness,
+as stated below.
+Note that
+this is not exactly the same as limit point compactness,
+since the infinite set in \cref{def:limptcpt} might be uncountable,
+and thus cannot be represented as the image of a sequence.
 
 \begin{definition}
     \label{def:seqcpt}
@@ -38,7 +48,39 @@ does not have a limit point in \((a,b)\).
     to be \define[compactness!sequential]{sequentially compact}.
 \end{definition}
 
+Nevertheless,
+sequential compactness also plays an important role in topology.
+
+The final definition we state for compactness is a bit different.
+Instead of dealing with subsets and points in a space,
+we consider yet another property of a set.
+
+\begin{definition}
+    \label{def:opencover}
+    Let \(X\) be a metric space,
+    and \(E\subset X\).
+    If \(\mathcal G=\indexset*{G_i}{i\in I}{}\) is a family of
+    open sets in \(X\) such that
+    \(E\subset\bigcup\mathcal G\),
+    then \(\mathcal G\) is called
+    an \define{open cover} of \(E\).
+    If \(\mathcal H\subset\mathcal G\) also satisfies
+    \(E\subset\bigcup\mathcal H\),
+    then \(\mathcal H\) is called
+    a \define{subcover} of \(\mathcal G\).
+\end{definition}
+
+Now we define our final definition of compactness.
+
 \begin{definition}
     \label{def:mcpt}
-    Let \(X\) be a metric space.
+    Let \(X\) be a metric space
+    and \(E\subset X\).
+    If any open cover of \(E\) has a finite subcover,
+    then \(E\) is said to be
+    \define[compactness!open-cover]{open-cover compact}.
 \end{definition}
+
+Since the modern definition of compactness comes from \cref{def:mcpt},
+we shall call open-cover compactness as ``compact''
+when there is no ambiguity.
