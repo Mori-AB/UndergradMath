@@ -1,0 +1,158 @@
+\setsection{Vector Spaces}
+\label{sec:vs}
+
+In algebra, one defines objects
+---
+one might say, ``categories'' of objects
+---
+by some properties that we wish them to have.
+We already have seen this kind of definitions,
+particularly the notion of fields throughout \cref{chap:numbers}.
+We now present a new kind of object called ``vector spaces.''
+
+\begin{definition}
+    \label{def:vs}
+    Let \(V\) be a set
+    and \(F\) be a field (for example, \(\Qmath\) or \(\Rmath\)).
+    Now let
+    \[
+        +:V\times V\to V
+        \qquad \text{and} \qquad
+        \cdot:F\times V\to V
+    \]
+    be binary operations defined from \(V\) and \(F\).
+    These are each called
+    \textdef{addition} and \textdef{scalar multiplication} of \(V\),
+    and are written as
+    \[
+        +(v,w)=v+w
+        \qquad \text{and} \qquad
+        \cdot(a,v)=av.
+    \]
+    
+    Suppose that
+    the operations \(+\) and \(\cdot\) satisfy the following conditions:
+    \begin{enumerate}[label=(V-\arabic*)]
+        \item For any \(u,v,w\in V\),
+        \((u+v)+w=u+(v+w)\).
+        \hfill(Associative addition)
+        
+        \item For any \(u,v\in V\),
+        \(u+v=v+u\).
+        \hfill(Commutative addition)
+
+        \item There exists \(\nu\in V\) such that
+        \(v+\nu=v\) for all \(v\in V\).
+        \hfill(Additive identity, zero vector)
+
+        \item Given any \(v\in V\),
+        there exists \(\tilde v\in V\) such that
+        \(v+\tilde v=\nu\).
+        \hfill(Additive inverse)
+
+        \item For any \(v\in V\) and \(a,b\in F\),
+        \((a+b)v=av+bv\)
+        \hfill(Scalar distribution)
+
+        \item For any \(u,v\in V\) and \(a\in F\),
+        \(a(u+v)=au+av\)
+        \hfill(Vector distribution)
+
+        \item For any \(v\in V\) and \(a,b\in F\),
+        \(a(bv)=(ab)v=b(av)\).
+        \hfill(Compatibility)
+
+        \item For any \(v\in V\),
+        \(1v=v\).
+    \end{enumerate}
+    Then the tuple \((V,+,\cdot)\) is called
+    a \define[vector space]{vector space over \(F\)},
+    and the members of \(V\) and \(F\) are called
+    \define{vectors} and \define{scalars}, respectively.
+    If the scalar field is clear from the context,
+    we simply say that \(V\) is a vector space.
+\end{definition}
+
+Since \(\nu\) and \(\tilde v\) play exactly the roles of
+\(0\) and \(-v\) in \(\Rmath\),
+we simply denote \(\nu\) as \(0\) and \(\tilde v\) as \(-v\).
+Thus the conditions (V-3) and (V-4) are rewritten as
+\begin{enumerate}[label=(V-\arabic*)]
+    \setcounter{enumi}{2}
+    \item There exists \(0\in V\) such that
+    \(v+0=v\) for all \(v\in V\).
+
+    \item Given any \(v\in V\),
+    there exists \(-v\in V\) such that \(v+(-v)=0\).
+\end{enumerate}
+
+But are identities and inverses unique?
+The answer is positive.
+In fact, the same argument will show up many times throughout algebra.
+
+\begin{proposition}
+    \label{prop:vsidinvuniq}
+    Let \(V\) be a vector space,
+    and \(v\in V\).
+    Then the zero vector \(0\)
+    and the additive inverse \(-v\) are unique.
+\end{proposition}
+\begin{myproof}
+    First suppose that there are two zero vectors \(0\) and \(0'\).
+    Then applying the definition we have
+    \[
+        0=0+0'=0',
+    \]
+    thus the zero vector is unique.
+
+    Similarly, suppose that there are two vectors \(u,w\)
+    such that \(u+v=0\) and \(v+w=0\).
+    Then
+    \[
+        u=u+0=u+(v+w)=(u+v)+w=0+w=w,
+    \]
+    thus the additive inverse in (V-4) is unique.
+\end{myproof}
+
+Of course, it is common practice to abbreviate addition by inverse.
+
+\begin{convention}
+    \label{cnv:vecsubtraction}
+    Given a vector space \(V\) and \(v,w\in V\),
+    we write the sum \(v+(-w)\) as \(v-w\).
+\end{convention}
+
+Note that
+we use the same notation for the scalar \(0\) and the vector \(0\).
+Context is required to differentiate between the two.
+However, the next observation tells us that
+it is not much of a trouble.
+
+\begin{observation}
+    \label{obv:zerovector}
+    Given a vector space \(V\) over \(F\),
+    the following holds.
+    \begin{nlist}
+        \item For any \(v\in V\),
+        \(0v=0\).
+        \item For any \(a\in F\),
+        \(a0=0\).
+        \item For any \(v\in V\) and \(a\in F\),
+        \(a(-v)=-av=(-a)v\).
+        \item Given \(v\in V\) and \(a\in F\),
+        \(av=0\) if and only if \(a=0\) or \(v=0\).
+    \end{nlist}
+\end{observation}
+\begin{sketch}
+    Since we only have the definition of vector spaces,
+    we should try to deduce these from the definitions.
+\end{sketch}
+\begin{myproof}
+    \begin{nlist}
+        \item Since \(0=0+0\) in \(F\),
+        \[
+            0v=(0+0)v=0v+0v
+        \]
+        implies that \(0v=0\).
+    \end{nlist}
+\end{myproof}
