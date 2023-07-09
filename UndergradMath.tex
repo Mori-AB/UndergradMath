@@ -1,5 +1,6 @@
 \documentclass[
-    twoside
+    twoside,
+    % image
 ]{styles/mori-book}% styles/mori-report in real usage
 
 \usepackage[
@@ -13,7 +14,6 @@
 \usepackage{import}
 \usepackage{tabularx}
 \usepackage{booktabs}
-\renewcommand{\baselinestretch}{1.15}
 
 \usepackage{biblatex}
 \addbibresource{UndergradMath.bib}
@@ -35,7 +35,7 @@
 }
 \docauthor{Kim Jae Won}
 \docdate{\today}
-\docversion{1.0.0}
+\docversion{1.1.6}
 % \docimagepath{images/SNU.png}
 
 \begin{document}
@@ -52,6 +52,10 @@
     \pagestyle{main}
 
     \import{contents}{Blocks.tex}
+    \import{contents}{Basics.tex}
+    \import{contents}{NewIdeas.tex}
+    \import{contents}{Advanced.tex}
+    \import{contents}{More.tex}
 
     \setcounter{part}{4}
     \setpart{Test Part 5}
